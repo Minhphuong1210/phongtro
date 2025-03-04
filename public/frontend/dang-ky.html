@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<!-- Mirrored from thuephongtro.com/dang-ky.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Mar 2025 14:34:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="assets/images/favicon.ico" />
+    <title>Đăng ký tài khoản</title>
+    
+        <meta name="robots" content="noindex,nofollow">
+
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/libs/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/libs/fancybox/css/fancybox.css">
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/libs/jqueryui/jquery-ui.css">
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/css/common.css?v=6">
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/css/header.css?v=6">
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/css/footer.css">
+    <link rel="stylesheet" href="https://thuephongtro.com/assets/css/home.css">
+    
+    <style>
+        .red_require{ color: red}
+        .btn-social {
+            color: #fff
+        }
+
+            .btn-social + .btn-social {
+                margin-top: 10px
+            }
+
+            .btn-social:hover {
+                color: #fff
+            }
+
+            .btn-social .fa {
+                line-height: 20px
+            }
+
+        .btn-bg-facebook {
+            background-color: #506dab;
+        }
+
+            .btn-bg-facebook:hover {
+                background-color: #405788
+            }
+
+        .btn-bg-google-plus {
+            background-color: #dd4b39
+        }
+
+            .btn-bg-google-plus:hover {
+                background-color: #c23321
+            }
+
+        .btn-bg-google {
+            background-color: #dd4b39
+        }
+
+            .btn-bg-google:hover {
+                background-color: #c23321
+            }
+
+        .bg-none {
+            background: 0 0
+        }
+    </style>
+
+    
+</head>
+<body>
+    
+    <div id="wrapper" class="homepage">
+        <header class="header">
+            <div class="logo"> <a href="https://thuephongtro.com/"> <img src="https://thuephongtro.com/assets/images/logo.png" alt="logo"> </a> </div>
+            <ul class="menu-nav list-unstyled d-none d-xl-flex align-items-center mb-0">
+                <li> <a class="" href="https://thuephongtro.com/cho-thue-phong-tro">Cho thuê phòng trọ</a> </li>
+                <li> <a class="" href="https://thuephongtro.com/cho-thue-nha-nguyen-can">Cho thuê nhà ở</a> </li>
+                <li> <a class="" href="https://thuephongtro.com/cho-thue-can-ho">Cho thuê căn hộ</a> </li>
+                <li> <a class="" href="https://thuephongtro.com/tim-nguoi-o-ghep">Tìm người ở ghép</a> </li>
+            </ul>
+                <div class="user-nav d-flex align-items-center">
+        <div class="user-nav-control">
+            <a href="https://thuephongtro.com/tin-da-luu.html" class="link">
+                <i class="icon icon-heart"></i>
+                <span class="badge" id="fav-count"></span>
+            </a>
+            <a href="https://thuephongtro.com/dang-ky.html" class="link">
+                <i class="icon icon-register"></i>
+                <span>Đăng ký</span>
+            </a>
+            <a href="https://thuephongtro.com/dang-nhap.html" class="link">
+                <i class="icon icon-login"></i>
+                <span>Đăng nhập</span>
+            </a>
+        </div>
+        <div class="user-nav-control-login d-none">
+            <a href="https://thuephongtro.com/tai-khoan.html" class="link">
+                <i class="icon icon-dashboard"></i>
+                <span>Trang quản lý</span>
+            </a>
+            <a href="https://thuephongtro.com/hop-thu-bao.html" class="link">
+                <i class="icon icon-bell"></i>
+            </a>
+            <a href="https://thuephongtro.com/tai-khoan.html" class="link">
+                <i class="icon icon-heart"></i>
+                <span class="badge">3</span>
+            </a> <a href="#" class="avatar">
+                <img src="https://thuephongtro.com/assets/images/default-user.svg" alt="avatar">
+            </a>
+        </div>
+        <div class="user-nav-mobile">
+            <a href="javascript:void(0)" class="link">
+                <i class="icon ic-menu-bar" data-bs-toggle="offcanvas" data-bs-target="#menuMobileRight"
+                   aria-controls="menuMobileRight"></i>
+            </a>
+        </div>
+        <div class="user-nav-action">
+            <a href="https://thuephongtro.com/dang-tin.html" class="link">
+                <i class="icon"></i> Đăng tin
+            </a>
+        </div>
+    </div>
+<script>
+    var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.length > 0)
+        document.getElementById('fav-count').innerText = favorites.length;
+</script>
+        </header>
+        
+        <main class="main">
+            <div class="container">
+    <div class="page_header">
+        <h1 class="page_title">Đăng ký tài khoản</h1>
+        <hr />
+    </div>
+    <div class="page_content register_page">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <section id="registerForm" class="changepassword-form__fields">
+<form action="https://thuephongtro.com/dang-ky.html" id="frmSubmit" method="post" role="form">                        <div class="form-group pb-3">
+                            <label class="control-label" for="Email">Email</label> <span class="red_require">*</span>
+                            <input class="form-control" data-val="true" data-val-email="&#x110;&#x1ECB;a ch&#x1EC9; email kh&#xF4;ng h&#x1EE3;p l&#x1EC7;" data-val-required="Vui l&#xF2;ng nh&#x1EAD;p email" id="Email" name="Email" type="text" value="" />
+                            <span class="text-danger field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group pb-3">
+                            <label class="control-label" for="Password">T&#x1EA1;o m&#x1EAD;t kh&#x1EA9;u</label> <span class="red_require">*</span>
+                            <input class="form-control" data-val="true" data-val-maxlength="M&#x1EAD;t kh&#x1EA9;u nhi&#x1EC1;u nh&#x1EA5;t 30 k&#xFD; t&#x1EF1;" data-val-maxlength-max="30" data-val-minlength="M&#x1EAD;t kh&#x1EA9;u &#xED;t nh&#x1EA5;t 6 k&#xFD; t&#x1EF1;" data-val-minlength-min="6" data-val-required="Vui l&#xF2;ng nh&#x1EAD;p m&#x1EAD;t kh&#x1EA9;u" id="Password" maxlength="30" name="Password" type="password" />
+                            <span class="text-danger field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group pb-3">
+                            <label class="control-label" for="FullName">H&#x1ECD; v&#xE0; t&#xEA;n</label> <span class="red_require">*</span>
+                            <input class="form-control" data-val="true" data-val-required="Vui l&#xF2;ng nh&#x1EAD;p h&#x1ECD; t&#xEA;n" id="FullName" maxlength="50" name="FullName" type="text" value="" />
+                            <span class="text-danger field-validation-valid" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group pb-3">
+                            <label class="control-label" for="Mobile">S&#x1ED1; &#x111;i&#x1EC7;n tho&#x1EA1;i</label> <span class="red_require">*</span>
+                            <input class="form-control" data-val="true" data-val-regex="S&#x1ED1; &#x111;i&#x1EC7;n tho&#x1EA1;i kh&#xF4;ng h&#x1EE3;p l&#x1EC7;" data-val-regex-pattern="(09|03|07|08|05)[0-9]{8}" data-val-required="Vui l&#xF2;ng nh&#x1EAD;p s&#x1ED1; &#x111;i&#x1EC7;n tho&#x1EA1;i" id="Mobile" maxlength="10" name="Mobile" type="text" value="" />
+                            <span class="text-danger field-validation-valid" data-valmsg-for="Mobile" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group pb-3">
+                            <label class="control-label" for="Captcha">M&#xE3; x&#xE1;c nh&#x1EAD;n</label> <span class="red_require">*</span>
+                            <div class="input-group">
+                                <input class="form-control captcha" data-val="true" data-val-required="Vui l&#xF2;ng nh&#x1EAD;p m&#xE3; x&#xE1;c nh&#x1EAD;n" id="Captcha" maxlength="4" name="Captcha" type="text" value="" />
+                                <div class="input-group-addon" style="width:90px; background:none; border:0"><img src="https://thuephongtro.com/captcha/index?t=638766342976741146"></div>
+                            </div>
+                            <span class="text-danger field-validation-valid" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group pb-3">
+                            <button type="submit" class="btn btn-success btn-block"><i class="fa fa-user-plus"></i> Tạo tài khoản</button>
+                        </div>
+                        <p class=" mgt-20">Bấm vào nút đăng ký tức là bạn đã đồng ý với <a href="https://thuephongtro.com/quy-dinh-su-dung.html" target="_blank"><b>quy định sử dụng</b></a> của chúng tôi</p>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8PGJMKt0IShAuxdoB4DjH0Z1tv0S9s6ySsTOXTL5jjc1av__9_xCVcJFHAxiT5u6hAhdEiGR0pFYEd7zudEFwQy3MDeLnvm8q7eVVzyEwaVaWd-V_W2UW_rF9Qyfb5aDk9b7eCa7tmRNRNGJIeCat5I" /></form>                </section>
+            </div>
+            <div class="col-xs-12 col-sm-1 col-md-1 hidden-xs">
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5">
+                <div class="right">
+                    <p class="mgb-20">Đăng nhập bằng Facebook hoặc Google</p>
+                    <section id="socialLoginForm">
+                        <div id="socialLoginList">
+    <p>
+<form action="https://thuephongtro.com/Login/Google" method="post">            <button type="submit" class="btn btn-social btn-bg-google btn-block" title="Đăng nhập bằng Google"><i class="fa fa-google"></i> Đăng nhập bằng Google</button>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8PGJMKt0IShAuxdoB4DjH0Z1tv0S9s6ySsTOXTL5jjc1av__9_xCVcJFHAxiT5u6hAhdEiGR0pFYEd7zudEFwQy3MDeLnvm8q7eVVzyEwaVaWd-V_W2UW_rF9Qyfb5aDk9b7eCa7tmRNRNGJIeCat5I" /></form>    </p>
+</div>
+                    </section>
+                    <div class="mgt-25">
+                        <p>Bạn đã có tài khoản? <a href="https://thuephongtro.com/dang-nhap.html">&#x110;&#x103;ng nh&#x1EAD;p</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 col-12 mb-4 mb-xl-0">
+                            <div class="footer-title"> Về chúng tôi </div>
+                            <div class="footer-content">
+                                <p>Website cho thuê phòng trọ, nhà trọ nhanh chóng và hiệu quả</p>
+                                <ul class="website-info list-unstyled mb-0">
+                                    <li>
+                                        <div class="icon ic-location-white"></div>
+                                        <div class="text"> 32-34 Điện Biên Phủ, P.Đakao, Quận 1, TP.HCM </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon ic-phone"></div>
+                                        <div class="text">0938.346.879</div>
+                                    </li>
+                                    <li>
+                                        <div class="icon ic-mail"></div>
+                                        <div class="text">nhatroviet@gmail.com</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-6 mb-4 mb-xl-0">
+                            <div class="footer-title"> Giới thiệu </div>
+                            <ul class="footer-menu list-unstyled mb-0">
+                                <li> <a href="https://thuephongtro.com/gioi-thieu.html">Giới thiệu</a> </li>
+                                <li> <a href="https://thuephongtro.com/quy-che-hoat-dong.html">Quy chế hoạt động</a> </li>
+                                <li> <a href="https://thuephongtro.com/chinh-sach-bao-mat.html">Chính sách bảo mật</a> </li>
+                                <li> <a href="https://thuephongtro.com/quy-dinh-su-dung.html">Quy định sử dụng</a> </li>
+                                <li> <a href="https://thuephongtro.com/lien-he.html">Liên hệ</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-6 mb-4 mb-xl-0">
+                            <div class="footer-title"> Hỗ trợ </div>
+                            <ul class="footer-menu list-unstyled mb-0">
+                                <li> <a href="https://thuephongtro.com/bang-gia-dich-vu.html">Bảng giá dịch vụ</a> </li>
+                                <li> <a href="https://thuephongtro.com/huong-dan.html">Hướng dẫn đăng tin</a> </li>
+                                <li> <a href="https://thuephongtro.com/quy-dinh-dang-tin.html">Quy định đăng tin</a> </li>
+                                <li> <a href="#">Cơ chế giải quyết tranh chấp</a> </li>
+                                <li> <a href="https://thuephongtro.com/blog.html">Tin tức</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-12">
+                            <div class="footer-title"> Phương thức thanh toán </div>
+                            <div class="footer-content">
+                                <span class="bds_icon icon_visa"></span> <span class="bds_icon icon_mastercard"></span> <span class="bds_icon icon_jcb"></span>
+                                <br><span class="bds_icon icon_internet_banking"></span> <span class="bds_icon icon_momo"></span> <span class="bds_icon icon_tienmat"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center">
+                Copyright © 2011 - 2024 Thuephongtro.com. Ghi rõ nguồn
+                "Thuephongtro.com" khi phát hành lại thông tin từ website này.
+            </div>
+            <div class="footer-toolbar">
+                <div class="footer-toolbar-inner">
+                    <div class="toolbar-item">
+                        <a href="https://thuephongtro.com/">
+                            <i class="icon ic-home"></i>
+                            <span class="text">Trang chủ</span>
+                        </a>
+                    </div>
+                    <div class="toolbar-item">
+                        <a href="https://thuephongtro.com/hop-thu-bao.html">
+                            <i class="icon ic-bell"></i>
+                            <span class="text">Thông báo</span>
+                        </a>
+                    </div>
+                    <div class="toolbar-item">
+                        <a href="https://thuephongtro.com/dang-tin.html">
+                            <i class="icon ic-pencil"></i>
+                            <span class="text">Đăng tin</span>
+                        </a>
+                    </div>
+                    <div class="toolbar-item">
+                            <a href="https://thuephongtro.com/dang-ky.html">
+                                <i class="icon ic-user"></i>
+                                <span class="text">Đăng ký</span>
+                            </a>
+                    </div>
+                    <div class="toolbar-item">
+                        <a href="https://thuephongtro.com/trang-quan-ly.html">
+                            <i class="icon ic-user"></i>
+                                <span class="text">Đăng nhập</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="backtop">
+                <img src="https://thuephongtro.com/assets/images/ic-chevron-up-white.svg" alt="go top">
+            </a>
+        </footer>
+            <div class="offcanvas offcanvas-end custom-canvas-popup" tabindex="-1" id="menuMobileRight"
+         aria-labelledby="menuMobileRightLabel">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="action-box">
+                <a href="https://thuephongtro.com/dang-nhap.html">Đăng nhập</a>
+                <a href="https://thuephongtro.com/dang-ky.html">Đăng ký</a>
+                <a href="https://thuephongtro.com/dang-tin.html">
+                    <i class="icon ic-pen-white"></i>
+                    Đăng tin
+                </a>
+            </div>
+            <hr>
+            <div class="menu-box">
+                <a href="https://thuephongtro.com/cho-thue-phong-tro">Cho thuê phòng trọ</a>
+                <a href="https://thuephongtro.com/cho-thue-nha-nguyen-can">Cho thuê nhà nguyên căn</a>
+                <a href="https://thuephongtro.com/cho-thue-can-ho">Căn hộ cho thuê</a>
+                <a href="https://thuephongtro.com/tim-nguoi-o-ghep">Tìm người ở ghép</a>
+            </div>
+            <hr>
+            <div class="bottom-box">
+                <i class="icon ic-headset"></i>
+                Liên hệ & hỗ trợ <a href="#" class="fw-bold text-danger">0938.346.879</a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script src="https://thuephongtro.com/assets/js/jquery.min.js"></script>
+    <script src="https://thuephongtro.com/assets/libs/jqueryui/jquery-ui.min.js"></script>
+    <script src="https://thuephongtro.com/assets/libs/jqueryui/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://thuephongtro.com/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://thuephongtro.com/assets/libs/fancybox/js/fancybox.umd.js"></script>
+    <script src="https://thuephongtro.com/assets/js/slider.js"></script>
+    <script src="https://thuephongtro.com/assets/js/main.js?v=6"></script>
+    <script src="https://thuephongtro.com/scripts/bootstrap.min.js"></script>
+    <script src="https://thuephongtro.com/scripts/bootstrap-growl.min.js"></script>
+    <script src="https://thuephongtro.com/scripts/jqueryval.min.js"></script>
+    <script src="https://thuephongtro.com/content/js/common.js?v=23"></script>
+    
+</body>
+
+<!-- Mirrored from thuephongtro.com/dang-ky.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Mar 2025 14:34:49 GMT -->
+</html>
