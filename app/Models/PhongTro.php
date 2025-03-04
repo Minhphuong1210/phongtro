@@ -30,4 +30,9 @@ class PhongTro extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+public static function getWherePhongtro(){
+   return self::where('is_active',1)->where('is_show_home',1);
+}
+
+
 }

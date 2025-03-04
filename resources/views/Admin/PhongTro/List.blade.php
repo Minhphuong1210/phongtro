@@ -82,7 +82,7 @@
 
 
 
-                                        <td>{{ $item->content ?? '' }}</td>
+                                        <td>{{ Str::limit($item->content ?? '',50) }}</td>
                                         <td>{{ $item->slug ?? '' }}</td>
                                         <td>{{ $item->dien_tich ?? '' }}</td>
                                         <td>{{ number_format($item->gia_tien ?? '') }}</td>

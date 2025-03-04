@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2025 at 06:13 AM
+-- Generation Time: Mar 04, 2025 at 05:56 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.3
 
@@ -901,7 +901,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2025_03_01_151414_create_permission_tables', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(3, 'App\\Models\\User', 1),
+(4, 'App\\Models\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -914,6 +947,30 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(5, 'edit', 'web', '2025-03-01 08:48:09', '2025-03-01 08:48:09'),
+(6, 'delete', 'web', '2025-03-01 08:48:09', '2025-03-01 08:48:09'),
+(7, 'view', 'web', '2025-03-01 08:48:09', '2025-03-01 08:48:09'),
+(8, 'addd', 'web', '2025-03-01 08:48:09', '2025-03-01 08:48:09');
 
 -- --------------------------------------------------------
 
@@ -954,11 +1011,13 @@ CREATE TABLE `phongtro` (
   `xa_id` int DEFAULT NULL,
   `huyen_id` int DEFAULT NULL,
   `thanh_pho_id` int DEFAULT NULL,
-  `link_ban_do` varchar(255) DEFAULT NULL,
+  `link_ban_do` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `nguoi_su_dung` int DEFAULT '0' COMMENT 'đây là trạng thái phòng đã có người sử dụng hay chưa 1 là rồi 0 là chưa',
   `tien_coc` float DEFAULT NULL COMMENT 'tiền cọc 1 tháng ',
   `thoi_han_hop_dong` int DEFAULT NULL COMMENT 'thời gian hợp đồng ',
   `category_id` int DEFAULT NULL,
+  `nguoi_dang` int DEFAULT NULL COMMENT 'này nếu khách yêu cầu làm đăng tin thì thêm ',
+  `thoi_gian` timestamp NULL DEFAULT NULL COMMENT 'thời gian họ đăng phòng này ',
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -967,13 +1026,13 @@ CREATE TABLE `phongtro` (
 -- Dumping data for table `phongtro`
 --
 
-INSERT INTO `phongtro` (`id`, `name`, `image`, `content`, `slug`, `dien_tich`, `gia_tien`, `is_show_home`, `is_active`, `viewre`, `xa_id`, `huyen_id`, `thanh_pho_id`, `link_ban_do`, `nguoi_su_dung`, `tien_coc`, `thoi_han_hop_dong`, `category_id`, `updated_at`, `created_at`) VALUES
-(5, 'Xe máy', '[\"uploads\\/phongtro\\/R9Z0hiP9RrfcZBpMB7745YShUxS5albYHTzS5SB9.jpg\",\"uploads\\/phongtro\\/8L724l3JLr4LnMZjfAOAJOqW1L4Uqw4qtbK28qur.jpg\",\"uploads\\/phongtro\\/IayowngiPZzmk3wlEZKN9ncO1SO0mxyNwuuWsc8O.png\"]', NULL, 'xe-may', '35', 12000, 0, 1, NULL, 1, 1, 1, NULL, 0, 600000, 12, 3, '2025-02-27 16:57:44', '2025-02-27 16:57:44'),
-(6, 'Chỉ nhỉnh 4tr vào ở ngay CCMN FULL đồ mới toanh , ban công của sổ thoáng mát tại thanh xuân', '[\"uploads\\/phongtro\\/YvKa9B44ljGuNStwAeV2efhXnU2XTgmDLuyc4w8Z.jpg\"]', NULL, 'chi-nhinh-4tr-vao-o-ngay-ccmn-full-do-moi-toanh-ban-cong-cua-so-thoang-mat-tai-thanh-xuan', '40', 600000, 0, 1, NULL, 971, 63, 4, NULL, 0, 1200000, 12, 4, '2025-02-27 17:07:12', '2025-02-27 17:07:12'),
-(7, 'Xe đạp', '[\"uploads\\/phongtro\\/TFwBkC1e9GKiyZiVhxMKHF5cqdGMJaw8bmo86yDI.png\",\"uploads\\/phongtro\\/pdWSilm4Nf9ld2SsZBIRLqIMiW7KyN64wHVaeCMy.png\"]', NULL, 'xe-dap', '12', 121, 0, 1, NULL, 1070, 71, 5, NULL, 0, 12, 12, 3, '2025-02-28 05:11:50', '2025-02-28 05:11:50'),
-(8, 'hahaha123', '[\"uploads\\/phongtro\\/xjhXyeX1OL9ZtdANz9xddOw9gAjaqM24jweg088y.png\",\"uploads\\/phongtro\\/Cp6Z3C0ELAiT8UHd97mSwpOZx2SzByIDqBL35BeX.png\"]', NULL, 'hahaha123', '123', 123213, 0, 1, NULL, 971, 63, 4, NULL, 0, 123, 12, 3, '2025-02-28 05:12:33', '2025-02-28 05:12:33'),
-(9, '111', '[\"uploads\\/phongtro\\/86ZqM8KNYxhHnfUDf7u6vVlPOwiJJrfU4aBdtxBu.png\",\"uploads\\/phongtro\\/vK5keUTZ7V2CvuCxuG54qZefwVojbadjx9yz3tmG.gif\",\"uploads\\/phongtro\\/oPzIg7a0H0VPXgAxm2XiknST5SgyK9nu94lc9TAR.gif\"]', NULL, '111', '1111', 1111, 0, 1, NULL, 1242, 82, 6, NULL, 0, 12, 12, 3, '2025-02-28 23:11:03', '2025-02-28 05:13:00'),
-(10, '1', '[\"uploads\\/phongtro\\/Sja2vLTBI5Bq5OiCncK6RskFEsR89qFoyrYXU65P.png\",\"uploads\\/phongtro\\/AffEiz7IoRKn1ICbjg4nUjPUUPhsGCPA0O65dFjw.png\",\"uploads\\/phongtro\\/auaAm4JhxCZXudt5Fa3hgMaMpKHbC4RjCFKJ7qAm.jpg\"]', NULL, '12332', '1', 1, 1, 1, NULL, 1, 1, 1, NULL, 0, 1, 213213, 3, '2025-02-28 23:09:33', '2025-02-28 05:13:32');
+INSERT INTO `phongtro` (`id`, `name`, `image`, `content`, `slug`, `dien_tich`, `gia_tien`, `is_show_home`, `is_active`, `viewre`, `xa_id`, `huyen_id`, `thanh_pho_id`, `link_ban_do`, `nguoi_su_dung`, `tien_coc`, `thoi_han_hop_dong`, `category_id`, `nguoi_dang`, `thoi_gian`, `updated_at`, `created_at`) VALUES
+(5, 'Xe máy', '[\"uploads\\/phongtro\\/R9Z0hiP9RrfcZBpMB7745YShUxS5albYHTzS5SB9.jpg\",\"uploads\\/phongtro\\/8L724l3JLr4LnMZjfAOAJOqW1L4Uqw4qtbK28qur.jpg\",\"uploads\\/phongtro\\/IayowngiPZzmk3wlEZKN9ncO1SO0mxyNwuuWsc8O.png\",\"uploads\\/phongtro\\/UIHMS29EDzriRSs8zgIXVvhgFGS52DaAyskb9CRl.jpg\"]', NULL, 'xe-may', '35', 12000, 1, 1, NULL, 1, 1, 1, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15682.451084167762!2d106.5975279090549!3d10.68713491689564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317532150e442779%3A0x89c530e4bf278e10!2zQW4gUGjDuiBUw6J5LCBCw6xuaCBDaMOhbmgsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1741110073244!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 0, 600000, 12, 3, NULL, NULL, '2025-03-04 10:42:59', '2025-02-27 16:57:44'),
+(6, 'Chỉ nhỉnh 4tr vào ở ngay CCMN FULL đồ mới toanh , ban công của sổ thoáng mát tại thanh xuân', '[\"uploads\\/phongtro\\/YvKa9B44ljGuNStwAeV2efhXnU2XTgmDLuyc4w8Z.jpg\"]', NULL, 'chi-nhinh-4tr-vao-o-ngay-ccmn-full-do-moi-toanh-ban-cong-cua-so-thoang-mat-tai-thanh-xuan', '40', 600000, 1, 1, NULL, 971, 63, 4, NULL, 0, 1200000, 12, 4, NULL, NULL, '2025-02-27 17:07:12', '2025-02-27 17:07:12'),
+(7, 'Xe đạp', '[\"uploads\\/phongtro\\/TFwBkC1e9GKiyZiVhxMKHF5cqdGMJaw8bmo86yDI.png\",\"uploads\\/phongtro\\/pdWSilm4Nf9ld2SsZBIRLqIMiW7KyN64wHVaeCMy.png\"]', NULL, 'xe-dap', '12', 121, 1, 1, NULL, 1070, 71, 5, NULL, 0, 12, 12, 3, NULL, NULL, '2025-02-28 05:11:50', '2025-02-28 05:11:50'),
+(8, 'hahaha123', '[\"uploads\\/phongtro\\/xjhXyeX1OL9ZtdANz9xddOw9gAjaqM24jweg088y.png\",\"uploads\\/phongtro\\/Cp6Z3C0ELAiT8UHd97mSwpOZx2SzByIDqBL35BeX.png\"]', NULL, 'hahaha123', '123', 123213, 1, 1, NULL, 971, 63, 4, NULL, 0, 123, 12, 3, NULL, NULL, '2025-02-28 05:12:33', '2025-02-28 05:12:33'),
+(9, '111', '[\"uploads\\/phongtro\\/86ZqM8KNYxhHnfUDf7u6vVlPOwiJJrfU4aBdtxBu.png\",\"uploads\\/phongtro\\/vK5keUTZ7V2CvuCxuG54qZefwVojbadjx9yz3tmG.gif\",\"uploads\\/phongtro\\/oPzIg7a0H0VPXgAxm2XiknST5SgyK9nu94lc9TAR.gif\"]', NULL, '111', '1111', 1111, 1, 1, NULL, 1242, 82, 6, NULL, 0, 12, 12, 3, NULL, NULL, '2025-02-28 23:11:03', '2025-02-28 05:13:00'),
+(10, '1', '[\"uploads\\/phongtro\\/Sja2vLTBI5Bq5OiCncK6RskFEsR89qFoyrYXU65P.png\",\"uploads\\/phongtro\\/AffEiz7IoRKn1ICbjg4nUjPUUPhsGCPA0O65dFjw.png\",\"uploads\\/phongtro\\/auaAm4JhxCZXudt5Fa3hgMaMpKHbC4RjCFKJ7qAm.jpg\"]', NULL, '12332', '1', 1, 1, 1, NULL, 1, 1, 1, NULL, 0, 1, 213213, 3, NULL, NULL, '2025-02-28 23:09:33', '2025-02-28 05:13:32');
 
 -- --------------------------------------------------------
 
@@ -1060,6 +1119,49 @@ INSERT INTO `provinces` (`id`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(3, 'admin', 'web', '2025-03-01 08:48:09', '2025-03-01 08:48:09'),
+(4, 'user', 'web', '2025-03-01 08:48:09', '2025-03-01 08:48:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(5, 3),
+(6, 3),
+(7, 3),
+(8, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `thanh_ly_hop_dong`
 --
 
@@ -1091,6 +1193,14 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'Admin@gmail.com', NULL, '$2y$12$LetyWYfFM5L2ZmBYSGNBTuGzjdrpPD8yYnEhyKrjniLQTagYeAxIO', NULL, NULL, NULL, '2025-03-01 08:39:40', '2025-03-01 08:39:40'),
+(2, 'User', 'User@gmail.com', NULL, '$2y$12$ssLuXhgO7Uni0p7VisN2Te8w6PSbZqrjuz8eNXTrFkTW5egaRt.KK', NULL, NULL, NULL, '2025-03-01 08:40:32', '2025-03-01 08:40:32');
 
 -- --------------------------------------------------------
 
@@ -12464,10 +12574,31 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
 -- Indexes for table `personal_access_tokens`
@@ -12488,6 +12619,20 @@ ALTER TABLE `phongtro`
 --
 ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indexes for table `thanh_ly_hop_dong`
@@ -12565,7 +12710,13 @@ ALTER TABLE `lich_su_thue_phong_chi_tiet`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -12586,6 +12737,12 @@ ALTER TABLE `provinces`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `thanh_ly_hop_dong`
 --
 ALTER TABLE `thanh_ly_hop_dong`
@@ -12595,13 +12752,36 @@ ALTER TABLE `thanh_ly_hop_dong`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `wards`
 --
 ALTER TABLE `wards`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11285;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

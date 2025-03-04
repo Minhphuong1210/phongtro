@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DiaChiController;
 use App\Http\Controllers\Admin\PhongtroController;
+use App\Http\Controllers\User\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -36,11 +37,10 @@ Route::get('/create_user', function () {
 });
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('/chi_tiet/{slug}',[HomeController::class,'chi_tiet'])->name('chi_tiet');
+Route::get('tim_phong/{slug}',[HomeController::class,'tim_phong'])->name('tim_phong');
+// Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::get('/', function () {
@@ -84,4 +84,4 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::get('/getthanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
         });
     });
-});
+// });

@@ -174,7 +174,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="link_ban_do" class="form-label">Link bản đồ</label>
-                                            <input type="url" id="link_ban_do"
+                                            <input type="text" id="link_ban_do"
                                                 class="form-control @error('link_ban_do') is-invalid @enderror"
                                                 name="link_ban_do" value="{{ old('link_ban_do') }}"
                                                 placeholder="Nhập link Google Maps">

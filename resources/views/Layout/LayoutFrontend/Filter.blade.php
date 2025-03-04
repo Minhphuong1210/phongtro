@@ -39,21 +39,23 @@
             <div class="modal-body">
                 <div class="property_type_list">
                     <ul class="list-unstyled mb-0" id="list_type">
+
+                        <?php $categories = App\Models\Category::query()->where('is_active', 1)->get(); ?>
+
                         <li class="">
-                            <a href="index.html">Tất cả</a>
+                            <a href="{{route('home')}}">Tất cả</a>
                         </li>
-                        <li class="">
-                            <a href="cho-thue-phong-tro.html">Cho thuê phòng trọ</a>
-                        </li>
-                        <li class="">
-                            <a href="cho-thue-can-ho.html">Căn hộ cho thuê</a>
-                        </li>
-                        <li class="">
-                            <a href="cho-thue-nha-nguyen-can.html">Nhà nguyên căn</a>
-                        </li>
-                        <li class="">
-                            <a href="tim-nguoi-o-ghep.html">Ở ghép</a>
-                        </li>
+
+                        @if (!empty($categories))
+                        
+                            @foreach ($categories as $category)
+                                <li class="">
+                                    <a href="{{ route('tim_phong', $category->slug) }}">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
+                            
+                        @endif
+
                     </ul>
                 </div>
             </div>
@@ -288,38 +290,37 @@
         </div>
     </div>
 </div>
- 
-<div class="modal filter-popup-modal fade" id="property_search" tabindex="-1"
-aria-labelledby="property_search_label" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-scrollable modal-fullscreen-xl-down">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                aria-label="Close"></button>
-            <h5 class="modal-title" id="property_search_label">BỘ LỌC NÂNG CAO</h5>
-        </div>
-        <div class="modal-body">
-            <div class="list-box" id="list_wards">
-                <h4>Phường/xã</h4>
-                <select name="" id="" class="form-select">
-                    <option value="" disabled selected>Tìm phường/xã</option>
-                </select>
-            </div>
 
-            <div class="list-box" id="list_street">
-                <h4>Đường/phố</h4>
-                <select name="" id="" class="form-select">
-                    <option value="" disabled selected>Tìm đường/phố</option>
-                </select>
+<div class="modal filter-popup-modal fade" id="property_search" tabindex="-1"
+    aria-labelledby="property_search_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-fullscreen-xl-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="property_search_label">BỘ LỌC NÂNG CAO</h5>
             </div>
-        </div>
-        <div class="modal-footer modal-actions">
-            <div class="reset">
-                <a href="index.html">Đặt lại</a>
+            <div class="modal-body">
+                <div class="list-box" id="list_wards">
+                    <h4>Phường/xã</h4>
+                    <select name="" id="" class="form-select">
+                        <option value="" disabled selected>Tìm phường/xã</option>
+                    </select>
+                </div>
+
+                <div class="list-box" id="list_street">
+                    <h4>Đường/phố</h4>
+                    <select name="" id="" class="form-select">
+                        <option value="" disabled selected>Tìm đường/phố</option>
+                    </select>
+                </div>
             </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-            <button type="button" class="btn btn-primary">Áp dụng</button>
+            <div class="modal-footer modal-actions">
+                <div class="reset">
+                    <a href="index.html">Đặt lại</a>
+                </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary">Áp dụng</button>
+            </div>
         </div>
     </div>
-</div>
 </div>
