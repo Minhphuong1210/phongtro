@@ -19,7 +19,7 @@ Trang chủ
         <h1 class="page-h1 font-merriweather-bold">
             Cho Thuê Phòng Trọ, Giá Rẻ, Mới Nhất Trên Toàn Quốc
         </h1>
-        <div class="section-box boxshadow bg-white border-radius mb-3 padding-15">
+        {{-- <div class="section-box boxshadow bg-white border-radius mb-3 padding-15">
             <div class="box-title fw-bold">Khu vực nổi bật</div>
             <ul class="sub-place list-unstyled mb-0">
                 <li>
@@ -35,7 +35,7 @@ Trang chủ
                     <a href="cho-thue-phong-tro-binh-duong.html">B&#xEC;nh D&#x1B0;&#x1A1;ng</a>
                 </li>
             </ul>
-        </div>
+        </div> --}}
         {{-- <div class="row d-flex"> --}}
 
         <div class="listpage-left mt-3 ">
@@ -59,6 +59,7 @@ Trang chủ
                 </div>
                 <div class="post-listing">
                     @foreach ($phongtros as $phongtro)
+                       <div class="getphongtro">
                         <article class="post-item vip2-item boxshadow bg-white">
                             <a
                                 href="{{route('chi_tiet',$phongtro->slug)}}">
@@ -111,14 +112,19 @@ Trang chủ
                                 </div>
                             </a>
                         </article>
+                       </div>
                     @endforeach
+
+<span id="du_lieu">
+
+</span>
 
                 </div>
                 <div class="d-flex justify-content-center">
                     {{ $phongtros->links() }}
                 </div>
 
-                <section class="section" style="background: none; border: 0">
+                {{-- <section class="section" style="background: none; border: 0">
                     <div class="section-header">
                         <h3 class="section-title">
                             Tìm kiếm theo từ khóa
@@ -163,7 +169,7 @@ Trang chủ
                             </li>
                         </ul>
                     </div>
-                </section>
+                </section> --}}
             </div>
         </div>
         <div class="listpage-right mt-3 ">
@@ -174,35 +180,51 @@ Trang chủ
                 <div class="aside-box-content">
                     <ul class="list-links col-2 clearfix">
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro77d1.html?dt=dt&amp;gia=0-1">Dưới 1 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '0-1']) }}">
+                                Dưới 1 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro559e.html?dt=dt&amp;gia=1-2">Từ 1 - 2 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '1-2']) }}">
+                                Từ 1 - 2 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-troc3fb.html?dt=dt&amp;gia=2-4">Từ 2 - 4 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '2-4']) }}">
+                                Từ 2 - 4 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro479e.html?dt=dt&amp;gia=4-6">Từ 4 - 6 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '4-6']) }}">
+                                Từ 4 - 6 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-trodfcd.html?dt=dt&amp;gia=6-8">Từ 6 - 8 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '6-8']) }}">
+                                Từ 6 - 8 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro22be.html?dt=dt&amp;gia=8-10">Từ 8 - 10 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '8-10']) }}">
+                                Từ 8 - 10 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-trod6ac.html?dt=dt&amp;gia=10-15">Từ 10 - 15 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '10-15']) }}">
+                                Từ 10 - 15 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro051b.html?dt=dt&amp;gia=15-20">Từ 15 - 20 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '15-20']) }}">
+                                Từ 15 - 20 triệu
+                            </a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro61ed.html?dt=dt&amp;gia=20-100">Trên 20 triệu</a>
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['gia' => '20-100']) }}">
+                                Trên 20 triệu
+                            </a>
                         </li>
-                        <li>
-                            <a rel="nofollow" href="cho-thue-phong-trod33a.html?dt=dt&amp;gia=0-0">Thỏa thuận</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -213,35 +235,32 @@ Trang chủ
                 <div class="aside-box-content">
                     <ul class="list-links col-2 clearfix">
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-troabfa.html?gia=gia&amp;dt=0-20">Dưới 20
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '0-20']) }}">Dưới 20
                                 m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-troa45b.html?gia=gia&amp;dt=20-30">Từ 20 -
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '20-30']) }}">Từ 20 -
                                 30m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-troeacd.html?gia=gia&amp;dt=30-40">Từ 30 -
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '30-40']) }}">Từ 30 -
                                 40m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro2832.html?gia=gia&amp;dt=40-60">Từ 40 -
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '40-60']) }}">Từ 40 -
                                 60m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-trob524.html?gia=gia&amp;dt=60-80">Từ 60 -
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '60-80']) }}">Từ 60 -
                                 80m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-troad77.html?gia=gia&amp;dt=80-100">Từ 80 -
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '80-100']) }}">Từ 80 -
                                 100m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro9347.html?gia=gia&amp;dt=100-1000">Trên
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '100-1000']) }}">Trên
                                 100m<sup>2</sup></a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" href="cho-thue-phong-tro10ed.html?gia=gia&amp;dt=0-0">Không xác định</a>
                         </li>
                     </ul>
                 </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Wards extends Model
 {
     use HasFactory;
-    protected $table = 'wards';
+    protected $table = 'wards'; // xã
     protected $fillable = ['name', 'prefix', 'province_id ', 'district_id '];
 
     public function PhongTro(){

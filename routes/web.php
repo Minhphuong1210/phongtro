@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DiaChiController;
 use App\Http\Controllers\Admin\PhongtroController;
+use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +25,7 @@ Route::get('/create_admin', function () {
     $user = User::create([
         'name' => 'Admin',
         'email' => 'Admin@gmail.com',
-        'password' => bcrypt('123456')
+        'password' => bcrypt('12345678Aa')
     ]);
 });
 
@@ -37,10 +39,31 @@ Route::get('/create_user', function () {
 });
 
 
-Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/chi_tiet/{slug}',[HomeController::class,'chi_tiet'])->name('chi_tiet');
-Route::get('tim_phong/{slug}',[HomeController::class,'tim_phong'])->name('tim_phong');
-// Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/chi_tiet/{slug}', [HomeController::class, 'chi_tiet'])->name('chi_tiet');
+Route::get('tim_phong/{slug}', [HomeController::class, 'tim_phong'])->name(name: 'tim_phong');
+Route::post('/search', [HomeController::class, 'search'])->name('search');
+Route::prefix('DiaChi')->name('DiaChi.')->group(function () {
+    Route::get('/xa', [DiaChiController::class, 'getXa'])->name('getXa');
+    Route::post('/showxa', [DiaChiController::class, 'xa'])->name('showxa');
+
+    Route::post('/huyen', [DiaChiController::class, 'huyen'])->name('huyen');
+    Route::post('/thanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
+    // Route::get('/getthanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
+    Route::get('/thanhPho', [DiaChiController::class, 'getThanhPho'])->name('getThanhPho');
+});
+Route::get('/theo_gia_va_dien_tich', [HomeController::class, 'theo_gia_va_dien_tich'])->name('theo_gia_va_dien_tich');
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('postLogin', [AuthController::class, 'postLogin'])->name('postLogin');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('postRegister', [AuthController::class, 'postRegister'])->name('postRegister');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('thong_tin_ca_nhan', [UserController::class, 'thongTinCaNhan'])->name('thongTinCaNhan');
+    });
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::get('/', function () {
@@ -84,4 +107,4 @@ Route::get('tim_phong/{slug}',[HomeController::class,'tim_phong'])->name('tim_ph
             Route::get('/getthanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
         });
     });
-// });
+});

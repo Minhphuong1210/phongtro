@@ -9,9 +9,9 @@ class PhongTro extends Model
 {
     use HasFactory;
     protected $table = 'phongtro';
-    protected $fillable = ['name', 'image', 'content', 'slug', 'dien_tich', 'gia_tien', 'is_show_home', 'is_active', 'viewre', 'xa_id', 'huyen_id', 'thanh_pho_id', 'link_ban_do', 'nguoi_su_dung', 'tien_coc', 'thoi_han_hop_dong','category_id'];
+    protected $fillable = ['name', 'image', 'content', 'slug', 'dien_tich', 'gia_tien', 'is_show_home', 'is_active', 'viewre', 'xa_id', 'huyen_id', 'thanh_pho_id', 'link_ban_do', 'nguoi_su_dung', 'tien_coc', 'thoi_han_hop_dong', 'category_id', 'thoi_gian', 'nguoi_dang'];
 
-   
+
     public function wards()
     {
         return $this->belongsTo(Wards::class, 'xa_id');
@@ -26,13 +26,17 @@ class PhongTro extends Model
         return $this->belongsTo(Provinces::class, 'thanh_pho_id');
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id');
     }
-
-public static function getWherePhongtro(){
-   return self::where('is_active',1)->where('is_show_home',1);
+public function user(){
+    return $this->hasOne(User::class, 'id','nguoi_dang');
 }
+    public static function getWherePhongtro()
+    {
+        return self::where('is_active', 1)->where('is_show_home', 1);
+    }
 
 
 }

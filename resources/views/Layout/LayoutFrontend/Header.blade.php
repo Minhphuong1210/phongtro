@@ -1,10 +1,13 @@
 <header class="header">
     <div class="logo"> <a href="index.html"> <img src="assets/images/logo.png" alt="logo"> </a> </div>
     <ul class="menu-nav list-unstyled d-none d-xl-flex align-items-center mb-0">
-        <li> <a class="" href="cho-thue-phong-tro.html">Cho thuê phòng trọ</a> </li>
-        <li> <a class="" href="cho-thue-nha-nguyen-can.html">Cho thuê nhà ở</a> </li>
-        <li> <a class="" href="cho-thue-can-ho.html">Cho thuê căn hộ</a> </li>
-        <li> <a class="" href="tim-nguoi-o-ghep.html">Tìm người ở ghép</a> </li>
+        <?php $categories = App\Models\Category::query()->where('is_active', 1)->get(); ?>
+
+        @foreach ($categories as $categorie)
+            <li> <a class="check_active" href="{{ route('tim_phong', $categorie->slug) }}" data-type="{{$categorie->slug}}">{{ $categorie->name }}</a>
+            </li>
+        @endforeach
+
     </ul>
     <div class="user-nav d-flex align-items-center">
         <div class="user-nav-control">
@@ -12,14 +15,28 @@
                 <i class="icon icon-heart"></i>
                 <span class="badge" id="fav-count"></span>
             </a>
-            <a href="dang-ky.html" class="link">
-                <i class="icon icon-register"></i>
-                <span>Đăng ký</span>
-            </a>
-            <a href="dang-nhap.html" class="link">
-                <i class="icon icon-login"></i>
-                <span>Đăng nhập</span>
-            </a>
+
+           
+
+@if (Auth::check())
+
+<a href="{{ route('user.thongTinCaNhan') }}" class="image">
+    <img src="{{ Storage::url('uploads/image/anh_dai_dien.jpg') }}" style="width: 64px; height: auto;" alt="Ảnh đại diện">
+</a>
+  
+
+@else
+<a href="{{route('register')}}" class="link">
+    <i class="icon icon-register"></i>
+    <span>Đăng ký</span>
+</a>
+<a href="{{route('login')}}" class="link">
+    <i class="icon icon-login"></i>
+    <span>Đăng nhập</span>
+</a>
+@endif
+
+           
         </div>
         <div class="user-nav-control-login d-none">
             <a href="dang-nhapa13e.html" class="link">
@@ -54,3 +71,29 @@
             document.getElementById('fav-count').innerText = favorites.length;
     </script>
 </header>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const check_active = document.querySelectorAll('.check_active');
+
+    function updateActiveState() {
+        // Lấy slug từ URL (đoạn cuối sau "/")
+        const urlParts = window.location.pathname.split('/');
+        const currentSlug = urlParts[urlParts.length - 1];
+
+        check_active.forEach((e) => {
+            if (e.dataset.type === currentSlug) {
+                e.classList.add('active');
+            } else {
+                e.classList.remove('active');
+            }
+        });
+    }
+
+    // Kiểm tra trạng thái active khi trang tải lần đầu
+    updateActiveState();
+});
+
+
+
+</script>

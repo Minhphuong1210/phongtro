@@ -227,6 +227,20 @@
                                         </div>
                                     </div>
 
+                                    {{-- <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="link_ban_do" class="form-label">Thời hạn hết thời gian hiển thị</label>
+                                            <input type="text" id="thoi_han_hop_dong"
+                                                class="form-control @error('thoi_han_hop_dong') is-invalid @enderror"
+                                                name="thoi_han_hop_dong" value="{{ old('thoi_han_hop_dong') }}"
+                                                placeholder="Nhập thời gian thuê phòng">
+                                            @error('thoi_han_hop_dong')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div> --}}
+                                    
+
                                 </div>
 
                                 <!-- Checkbox trạng thái -->

@@ -273,9 +273,9 @@
         }
 
         /* .popup-images-fullscreen .images-listing .image-item:last-of-type {
-            width: 100%;
-            height: 500px;
-        } */
+                    width: 100%;
+                    height: 500px;
+                } */
         .popup-images-fullscreen .images-listing .image-item img {
             width: 100%;
             height: 100%;
@@ -343,7 +343,7 @@
 
         #bar-sticky {
             /* border-top: 1px solid #eee;
-            border-bottom: 1px solid #e5e5e5; */
+                    border-bottom: 1px solid #e5e5e5; */
             height: 50px;
             background-color: #fff;
             margin-bottom: 10px;
@@ -437,7 +437,7 @@
                             </span>
                             <span class="item post-hashtag d-inline-flex align-items-center">
                                 <i class="icon ic-hashtag"></i>
-                                170151
+                                {{ $chitietPhongtro->id }}
                             </span>
                         </div>
                         <span class="item post-published d-inline-flex align-items-center">
@@ -495,7 +495,7 @@
                             allowfullscreen=""></iframe> --}}
 
 
-                            {!!$chitietPhongtro->link_ban_do!!}
+                        {!! $chitietPhongtro->link_ban_do !!}
 
                     </div>
                 </div>
@@ -505,44 +505,42 @@
                     </h2>
                     <div class="section-detail-row">
                         <strong>Ngày cập nhật</strong>
-                        <span>03/03/2025</span>
+                        <span>{{ $chitietPhongtro->created_at }}</span>
                     </div>
-                    <div class="section-detail-row">
+                    {{-- <div class="section-detail-row">
                         <strong>Ngày hết hạn</strong>
                         <span>05/03/2025</span>
-                    </div>
-                    <div class="section-detail-row">
+                    </div> --}}
+                    {{-- <div class="section-detail-row">
                         <strong>Loại tin</strong>
                         <span style="color: #ea2e9d">VIP 3</span>
-                    </div>
+                    </div> --}}
                     <div class="section-detail-row">
                         <strong>Mã tin</strong>
-                        <span>170151</span>
+                        <span>{{ $chitietPhongtro->id }}</span>
                     </div>
                 </div>
                 <div class="section-report">
                     <div class="text">
                         Bạn đang xem nội dung tin đăng
                         <em>
-                            "Khu tr&#x1ECD; m&#x1EDB;i x&#xE2;y - an
-                            ninh - s&#x1EA1;ch s&#x1EBD; -
-                            gi&#x1EDD; gi&#x1EA5;c t&#x1EF1; do -
-                            ri&#xEA;ng ch&#x1EE7; - kh&#xF3;a
-                            v&#xE2;n tay - gi&#xE1; ch&#x1EC9;
-                            t&#x1EEB; 2,6tr".
+                            "Khu trọ mới xây - an ninh - sạch sẽ -
+                            giờ giấc tự do - riêng chủ - khóa
+                            vân tay - giá chỉ từ {{ $chitietPhongtro->gia_tien }} triệu".
                         </em>
+
                         Mọi thông tin liên quan đến tin đăng này chỉ
                         mang tín chất tham khảo. Nếu bạn có phản hồi
                         với tin đăng này (báo xấu, tin đã cho thuê,
                         không liên lạc được,...), vui lòng thông báo
                         để chúng tôi xử lý.
                     </div>
-                    <div class="action">
+                    {{-- <div class="action">
                         <a href="lien-he4360.html?post_id=170151" target="_blank">
                             <i class="icon ic-report-flag"></i> Gửi
                             phản hồi
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -554,22 +552,22 @@
                         <img src="images/avatar/5d0ce3d35906430cb5b1201f59aa3f14.png" alt="avatar" />
                     </div>
                     <div class="detail">
-                        <strong>Myn Huy House</strong>
-                        <span>Ngày tham gia: 27/02/2025</span>
+                        <strong>{{$chitietPhongtro->user->name ?? "không có"}}</strong>
+                        <span>Ngày tham gia: {{$chitietPhongtro->user->created_at ?? "không có"}}</span>
                     </div>
                 </div>
                 <div class="detailp-user-bottom">
-                    <a href="https://zalo.me/0707670145" target="_blank">
+                    <a href="https://zalo.me/{{$chitietPhongtro->user->phone?? "không có"}}" target="_blank">
                         <i class="icon ic-chat"></i> Nhắn Zalo
                     </a>
-                    <a class="js-show-phone" data-phone="0707670145">
+                    <a class="js-show-phone" data-phone="{{$chitietPhongtro->user->phone?? "không có"}}">
                         <i class="icon ic-phone"></i>
-                        <strong>0707670145</strong>
+                        <strong>{{$chitietPhongtro->user->phone?? "không có"}}</strong>
                     </a>
                 </div>
             </div>
             <div class="section-report"></div>
-            <section class="detailp-location boxshadow bg-white">
+            {{-- <section class="detailp-location boxshadow bg-white">
                 <div class="section-header">
                     <h2 class="section-title font-merriweather-bold">
                         Cho thuê phòng trọ Bà Rịa Vũng Tàu
@@ -609,293 +607,9 @@
                             thuê phòng trọ Bà Rịa</a>
                     </li>
                 </ul>
-            </section>
+            </section> --}}
         </div>
         <div class="clearfix"></div>
-        <div class="detailp-other-mobile">
-            <section class="homepage-feature">
-                <h2 class="section-title font-merriweather-bold">
-                    Tin đăng cùng khu vực
-                </h2>
-                <div class="property-layout">
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-uu-tien-doi-tuong-la-sinh-vien-va-nhan-vien-van-phong-170144.html"
-                            class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="../img.thuephongtro.com/images/thumb/2025/02/21/20250221141552-rairz.jpg"
-                                    alt="Cho thuê phòng trọ. Ưu tiên đối tượng là sinh viên và nhân viên văn phòng"
-                                    loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho thuê phòng trọ. Ưu tiên đối
-                                    tượng là sinh viên và nhân viên
-                                    văn phòng
-                                </h4>
-                                <span class="price">1.8 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>23.5 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-24m2-moi-xay-2020-duong-pham-hong-thai-gan-nga-tu-gieng-nuoc-coopmart-vung-tau-156837.html"
-                            class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="../img.thuephongtro.com/images/thumb/2020/04/07/20200407074614-wlkih.jpg"
-                                    alt="Cho thuê phòng trọ 24m2 mới xây 2020 đường Phạm Hồng Thái, gần ngã tư Giếng Nước Coopmart vũng tàu"
-                                    loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho thuê phòng trọ 24m2 mới xây
-                                    2020 đường Phạm Hồng Thái, gần
-                                    ngã tư Giếng Nước Coopmart vũng
-                                    tàu
-                                </h4>
-                                <span class="price">2.05 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>24 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-moi-co-gac-camera-chong-trom-gan-cho-truong-hoc-gia-3tr-168611.html"
-                            class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="../img.thuephongtro.com/images/thumb/2022/02/13/20220213173953-0x4ud.jpg"
-                                    alt="Cho thuê phòng trọ mới có gác , camera chống trộm, gần chợ ,trường học giá 3tr"
-                                    loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho thuê phòng trọ mới có gác ,
-                                    camera chống trộm, gần chợ
-                                    ,trường học giá 3tr
-                                </h4>
-                                <span class="price">3 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>35 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-thanh-pho-vung-tau-168072.html" class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="../img.thuephongtro.com/images/thumb/2021/10/27/20211027113938-inlg3.jpg"
-                                    alt="Cho thuê phòng trọ thành phố Vũng Tàu" loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho thuê phòng trọ thành phố
-                                    Vũng Tàu
-                                </h4>
-                                <span class="price">1 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>18 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-nha-nguyen-can-nha-tro-khach-san-nha-nghi-167868.html"
-                            class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="images/default.jpg" alt="Cho Thuê Nhà Nguyên Căn, Nhà Trọ, Khách Sạn, Nhà Nghỉ"
-                                    loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho Thuê Nhà Nguyên Căn, Nhà
-                                    Trọ, Khách Sạn, Nhà Nghỉ
-                                </h4>
-                                <span class="price">7 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>300 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-hem-944-duong-30-4-167688.html" class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="../img.thuephongtro.com/images/thumb/2021/06/17/20210617134137-ihhse.jpg"
-                                    alt="CHO THUÊ PHÒNG TRỌ HẺM 944 ĐƯỜNG 30/4" loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    CHO THUÊ PHÒNG TRỌ HẺM 944 ĐƯỜNG
-                                    30/4
-                                </h4>
-                                <span class="price">1 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>20 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-gan-vong-xoay-dong-xuyen-159599.html"
-                            class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="images/default.jpg" alt="Cho thuê phòng trọ gần vòng xoay Đông Xuyên"
-                                    loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho thuê phòng trọ gần vòng xoay
-                                    Đông Xuyên
-                                </h4>
-                                <span class="price">1 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>20 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                    <article class="property-item vip5-item">
-                        <a href="cho-thue-phong-tro-o-lau-1-duong-tran-dong-157603.html"
-                            class="d-block boxshadow bg-white">
-                            <figure class="thumb mb-0">
-                                <img src="../img.thuephongtro.com/images/thumb/2020/05/30/20200530182107-0mz2t.jpg"
-                                    alt="Cho thuê phòng trọ ở lầu 1 đường Trần Đồng" loading="lazy" />
-                            </figure>
-                            <aside class="post-aside" style="">
-                                <h4 class="title limit-text-2">
-                                    Cho thuê phòng trọ ở lầu 1 đường
-                                    Trần Đồng
-                                </h4>
-                                <span class="price">5 Triệu/tháng</span>
-                                <div class="info-features">
-                                    <span class="feature-item">
-                                        <i class="icon ic-expand"></i>50 m&#xB2;
-                                    </span>
-                                </div>
-                                <div class="post-address limit-text-2"
-                                    style="
-                                    border-bottom: 0;
-                                    margin-top: 5px;
-                                    margin-bottom: 0;
-                                    padding: 0;
-                                ">
-                                    <span>
-                                        Vũng Tàu, Bà Rịa Vũng Tàu
-                                    </span>
-                                </div>
-                            </aside>
-                        </a>
-                    </article>
-                </div>
-            </section>
-        </div>
-        <div class="bottom-toolbar d-block d-xl-none">
-            <div class="inner">
-                <a class="action-item sms" href="sms:/0707670145">
-                    <i class="icon ic-chat"></i> Nhắn tin
-                </a>
-                <a class="action-item zalo" href="https://zalo.me/0707670145">
-                    Zalo
-                </a>
-                <a class="action-item call" href="tel:0707670145">
-                    <i class="icon ic-phone"></i>
-                    <span>0707670145</span>
-                </a>
-            </div>
-        </div>
     </div>
 
     <div class="container">
@@ -903,345 +617,48 @@
             <h2 class="section-title font-merriweather-bold">
                 Tin đăng cùng khu vực
             </h2>
-            <div class="property-layout" style="margin-left: -10px; margin-bottom: 20px">
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-uu-tien-doi-tuong-la-sinh-vien-va-nhan-vien-van-phong-170144.html"
-                        class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="../img.thuephongtro.com/images/thumb/2025/02/21/20250221141552-rairz.jpg"
-                                alt="Cho thuê phòng trọ. Ưu tiên đối tượng là sinh viên và nhân viên văn phòng"
-                                loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                0
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho thuê phòng trọ. Ưu tiên đối
-                                tượng là sinh viên và nhân viên văn
-                                phòng
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
+            <div class="property-layout">
+
+                @foreach ($sanPhamCungHuyen as $sanPhamCungHuyens)
+                    <article class="property-item vip5-item">
+                        <a href="{{route('chi_tiet',$sanPhamCungHuyens->slug)}}"
+                            class="d-block boxshadow bg-white">
+                            <figure class="thumb mb-0">
+                                @php
+                                    $images = json_decode($sanPhamCungHuyens->image, true);
+                                @endphp
+                                <img src="{{ Storage::url($images[0]) }}" alt="{{ $sanPhamCungHuyens->name }}"
+                                    loading="lazy" />
+                            </figure>
+                            <aside class="post-aside" style="">
+                                <h4 class="title limit-text-2">
+                                    {{ $sanPhamCungHuyens->name }}
+                                </h4>
+                                <span class="price">{{ $sanPhamCungHuyens->gia_tien }} Triệu/tháng</span>
+                                <div class="info-features">
+                                    <span class="feature-item">
+                                        <i class="icon ic-expand"></i>{{ $sanPhamCungHuyens->dien_tich }} m&#xB2;
+                                    </span>
+                                </div>
+                                <div class="post-address limit-text-2"
                                     style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">1.8
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>23.5 m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-24m2-moi-xay-2020-duong-pham-hong-thai-gan-nga-tu-gieng-nuoc-coopmart-vung-tau-156837.html"
-                        class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="../img.thuephongtro.com/images/thumb/2020/04/07/20200407074614-wlkih.jpg"
-                                alt="Cho thuê phòng trọ 24m2 mới xây 2020 đường Phạm Hồng Thái, gần ngã tư Giếng Nước Coopmart vũng tàu"
-                                loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                6
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho thuê phòng trọ 24m2 mới xây 2020
-                                đường Phạm Hồng Thái, gần ngã tư
-                                Giếng Nước Coopmart vũng tàu
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">2.05
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>24
-                                    m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-moi-co-gac-camera-chong-trom-gan-cho-truong-hoc-gia-3tr-168611.html"
-                        class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="../img.thuephongtro.com/images/thumb/2022/02/13/20220213173953-0x4ud.jpg"
-                                alt="Cho thuê phòng trọ mới có gác , camera chống trộm, gần chợ ,trường học giá 3tr"
-                                loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                4
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho thuê phòng trọ mới có gác ,
-                                camera chống trộm, gần chợ ,trường
-                                học giá 3tr
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">3
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>35
-                                    m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-thanh-pho-vung-tau-168072.html" class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="../img.thuephongtro.com/images/thumb/2021/10/27/20211027113938-inlg3.jpg"
-                                alt="Cho thuê phòng trọ thành phố Vũng Tàu" loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                5
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho thuê phòng trọ thành phố Vũng
-                                Tàu
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">1
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>18
-                                    m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-            </div>
-            <div class="property-layout" style="margin-left: -10px">
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-nha-nguyen-can-nha-tro-khach-san-nha-nghi-167868.html"
-                        class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="images/default.jpg" alt="Cho Thuê Nhà Nguyên Căn, Nhà Trọ, Khách Sạn, Nhà Nghỉ"
-                                loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                0
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho Thuê Nhà Nguyên Căn, Nhà Trọ,
-                                Khách Sạn, Nhà Nghỉ
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">7
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>300 m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-hem-944-duong-30-4-167688.html" class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="../img.thuephongtro.com/images/thumb/2021/06/17/20210617134137-ihhse.jpg"
-                                alt="CHO THUÊ PHÒNG TRỌ HẺM 944 ĐƯỜNG 30/4" loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                6
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                CHO THUÊ PHÒNG TRỌ HẺM 944 ĐƯỜNG
-                                30/4
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">1
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>20
-                                    m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-gan-vong-xoay-dong-xuyen-159599.html" class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="images/default.jpg" alt="Cho thuê phòng trọ gần vòng xoay Đông Xuyên"
-                                loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                0
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho thuê phòng trọ gần vòng xoay
-                                Đông Xuyên
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">1
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>20
-                                    m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
-                <article class="property-item vip5-item" style="margin-left: 10px">
-                    <a href="cho-thue-phong-tro-o-lau-1-duong-tran-dong-157603.html" class="d-block boxshadow bg-white">
-                        <figure class="thumb mb-0">
-                            <img src="../img.thuephongtro.com/images/thumb/2020/05/30/20200530182107-0mz2t.jpg"
-                                alt="Cho thuê phòng trọ ở lầu 1 đường Trần Đồng" loading="lazy" />
-                            <span class="number-image">
-                                <i class="icon ic-image"></i>
-                                5
-                            </span>
-                        </figure>
-                        <aside class="post-aside">
-                            <h4 class="title limit-text-2">
-                                Cho thuê phòng trọ ở lầu 1 đường
-                                Trần Đồng
-                            </h4>
-                            <div class="info-features">
-                                <span class="price"
-                                    style="
-                                    float: left;
-                                    padding-right: 20px;
-                                ">5
-                                    Triệu/tháng</span>
-                                <span class="feature-item" style="float: left">
-                                    <i class="icon ic-expand"></i>50
-                                    m&#xB2;
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="post-address limit-text-2"
-                                style="
-                                border-bottom: 0;
-                                margin-top: 5px;
-                            ">
-                                <i class="icon ic-address"></i>
-                                <span>
-                                    Vũng Tàu, Bà Rịa Vũng Tàu
-                                </span>
-                            </div>
-                        </aside>
-                    </a>
-                </article>
+            border-bottom: 0;
+            margin-top: 5px;
+            margin-bottom: 0;
+            padding: 0;
+        ">
+                                    <span>
+                                        {{ $sanPhamCungHuyens->wards->name }},
+                                        {{ $sanPhamCungHuyens->districts->name }},
+                                        {{ $sanPhamCungHuyens->provinces->name }}
+                                    </span>
+                                </div>
+                            </aside>
+                        </a>
+                    </article>
+                @endforeach
+
+
             </div>
         </section>
     </div>

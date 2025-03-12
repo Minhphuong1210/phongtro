@@ -96,7 +96,7 @@
                                         <td>{{ $item->wards->name ?? '' }}</td>
                                         <td>{{ $item->districts->name ?? '' }}</td>
                                         <td>{{ $item->provinces->name ?? '' }}</td>
-                                        <td>{{ $item->link_ban_do ?? '' }}</td>
+                                        <td>{{ Str::limit($item->link_ban_do ?? '',50) }}</td>
                                         <td>{!! $item->nguoi_su_dung == '1'
                                             ? '<span class="badge bg-primary">Hiện</span>'
                                             : '<span class="badge bg-danger">Ẩn</span>' !!}</td>

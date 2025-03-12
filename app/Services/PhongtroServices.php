@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\PhongtroRepositories;
+use Auth;
 use Illuminate\Http\Request;
 
 /*
@@ -70,13 +71,8 @@ class PhongtroServices
 
         if ($request->has('delete_images')) {
             $deletedImages = $request->delete_images;
-// dd($deletedImages);
-
             $imagePaths = array_diff($imagePaths, $deletedImages);
         }
-
-// dd($request->all());
-
         $data = [
             'name' => $request->name,
             'dien_tich' => $request->dien_tich,
@@ -92,6 +88,7 @@ class PhongtroServices
             'is_active' => $request->has('is_active') ? true : false,
             'is_show_home' => $request->has('is_show_home') ? true : false,
             'image' => json_encode(array_values($imagePaths)),
+            'nguoi_dang'=>Auth::user()->id,
         ];
 
         if (!$isUpdate) {
@@ -100,4 +97,6 @@ class PhongtroServices
 
         return $data;
     }
+
+
 }

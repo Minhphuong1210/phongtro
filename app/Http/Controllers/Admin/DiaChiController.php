@@ -18,8 +18,8 @@ class DiaChiController extends Controller
         ]);
 
         $id = $request->id;
-        $xa=new Wards();
-       $xaQuery= $xa->show($id);
+        $xa = new Wards();
+        $xaQuery = $xa->show($id);
         return response()->json(['xaQuery' => $xaQuery]);
     }
 
@@ -37,15 +37,16 @@ class DiaChiController extends Controller
         ]);
 
         $id = $request->id;
-        $Huyen=new Districts();
-       $HuyenQuery= $Huyen->show($id);
+        $Huyen = new Districts();
+        $HuyenQuery = $Huyen->show($id);
         return response()->json(['HuyenQuery' => $HuyenQuery]);
     }
 
-public function showHuyen(){
-    $huyen = Districts::getHuyen();
-    return response()->json(['huyen' => $huyen]);
-}
+    public function showHuyen()
+    {
+        $huyen = Districts::getHuyen();
+        return response()->json(['huyen' => $huyen]);
+    }
 
     public function thanhpho(Request $request)
     {
@@ -59,6 +60,10 @@ public function showHuyen(){
         return response()->json(['thanhpho' => $thanhpho]);
     }
 
+    public function getThanhPho(){
+        $thanhPho = Provinces::getThanhPho();
+        return response()->json(['thanhPho' => $thanhPho],200);
+    }
 
 
 }

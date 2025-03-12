@@ -15,26 +15,30 @@
     <meta property="og:title" content="Website số 1 về Phòng trọ tại Việt Nam | Thuephongtro.com">
     <meta property="og:url" content="index.html">
     <meta property="og:type" content="website">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:description"
         content="Kênh đăng tin cho thuê Phòng trọ hàng đầu, tìm Nhà trọ giá rẻ đầy đủ tiện ích ☑️Mới xây ☑️Cho người đi làm, sinh viên ☑️Giờ giấc thoải mái ☑️Vệ sinh riêng ☑️Click Ngay!">
     <link rel="canonical" href="index.html">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- <link rel="stylesheet" href="{{asset('frontend/assets/libs/bootstrap/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('frontend/assets/libs/fancybox/css/fancybox.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/libs/jqueryui/jquery-ui.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/common1bce.css?v=6')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/header1bce.css?v=6')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/footer.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/home.css')}}"> --}}
-    <link rel="stylesheet" href="{{asset('frontend/assets/libs/bootstrap/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('frontend/assets/libs/fancybox/css/fancybox.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/libs/jqueryui/jquery-ui.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/common1bce.css?v=6')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/header1bce.css?v=6')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/footer.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/home.cs')}}s">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/listpage.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/detail.css')}}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/libs/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/libs/fancybox/css/fancybox.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/libs/jqueryui/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/common1bce.css?v=6') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/header1bce.css?v=6') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/libs/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/libs/fancybox/css/fancybox.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/libs/jqueryui/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/common1bce.css?v=6') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/header1bce.css?v=6') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/home.cs') }}s">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/listpage.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/manager.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/userinfo.css') }}" />
 
     @yield('css')
 
@@ -45,25 +49,31 @@
 
     <div id="wrapper" class="listpage">
         @include('Layout.LayoutFrontend.Header')
+
+        {{-- {{dd()}} --}}
+
+        @if (request()->path() === '/' || request()->is('tim_phong*'))
         @include('Layout.LayoutFrontend.Filter')
+    @endif
+    
         <!-- POPUP -->
         <main class="main">
-           @yield('content')
+            @yield('content')
         </main>
         @include('Layout.LayoutFrontend.Footer')
-       
+
     </div>
-    <script src="{{asset('frontend/assets/js/jquery.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/libs/jqueryui/jquery-ui.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/libs/jqueryui/jquery.ui.touch-punch.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/libs/fancybox/js/fancybox.umd.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/slider.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/main1bce.js?v=6')}}"></script>
-    <script src="{{asset('frontend/scripts/bootstrap.min.js')}}"></script>
-    <script src="{{asset('frontend/scripts/bootstrap-growl.min.js')}}"></script>
-    <script src="{{asset('frontend/scripts/jqueryval.min.js')}}"></script>
-    <script src="{{asset('frontend/content/js/common80ba.js?v=23')}}"></script>
+    <script src="{{ asset('frontend/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/libs/jqueryui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/libs/jqueryui/jquery.ui.touch-punch.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/libs/fancybox/js/fancybox.umd.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/slider.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/main1bce.js?v=6') }}"></script>
+    <script src="{{ asset('frontend/scripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/scripts/bootstrap-growl.min.js') }}"></script>
+    <script src="{{ asset('frontend/scripts/jqueryval.min.js') }}"></script>
+    <script src="{{ asset('frontend/content/js/common80ba.js?v=23') }}"></script>
 
     <script>
         function search(value) {

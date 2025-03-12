@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Districts extends Model
 {
     use HasFactory;
-    protected $table='districts';
+    protected $table='districts'; // huyện
     protected $fillable = ['name', 'prefix','province_id '];
     public function PhongTro(){
         return $this->hasMany(PhongTro::class,'huyen_id','id');
