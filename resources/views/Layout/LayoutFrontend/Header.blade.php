@@ -21,7 +21,7 @@
 @if (Auth::check())
 
 <a href="{{ route('user.thongTinCaNhan') }}" class="image">
-    <img src="{{ Storage::url('uploads/image/anh_dai_dien.jpg') }}" style="width: 64px; height: auto;" alt="Ảnh đại diện">
+    <img src="{{ Storage::url('uploads/image/anh_dai_dien.jpg') }}" style="width: 49px; height: auto;" alt="Ảnh đại diện">
 </a>
   
 
@@ -60,7 +60,7 @@
             </a>
         </div>
         <div class="user-nav-action">
-            <a href="dang-nhap8b86.html" class="link">
+            <a href="{{route('user.dangtin')}}" class="link">
                 <i class="icon"></i> Đăng tin
             </a>
         </div>

@@ -27,7 +27,7 @@ class PhongTroCreateRequest extends FormRequest
             'dien_tich'          => 'required|integer|min:1',
             'gia_tien'           => 'required|numeric|min:0',
             'content'            => 'nullable|string',
-            'thanh_pho_id'       => 'required|integer|exists:Provinces,id',
+            // 'thanh_pho_id'       => 'required|integer|exists:Provinces,id',
             'huyen_id'           => 'required|integer|exists:Districts,id',
             'xa_id'              => 'required|integer|exists:Wards,id',
             'tien_coc'           => 'required|numeric|min:0',

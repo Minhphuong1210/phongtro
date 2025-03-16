@@ -80,7 +80,8 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="content" class="form-label">Content</label>
-                                            <textarea class="form-control" id="content" name="content"></textarea>
+                                            <textarea class="@error('content') is-invalid @enderror" name="content" id="ckeditor-classic">{{ old('content') }}</textarea>
+
                                         </div>
 
 
@@ -347,4 +348,13 @@
             });
         });
     </script>
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#ckeditor-classic'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 @endsection

@@ -8,16 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Districts extends Model
 {
     use HasFactory;
-    protected $table='districts'; // huyện
-    protected $fillable = ['name', 'prefix','province_id '];
-    public function PhongTro(){
-        return $this->hasMany(PhongTro::class,'huyen_id','id');
+    protected $table = 'districts'; // huyện
+    protected $fillable = ['name', 'prefix', 'province_id '];
+    public function PhongTro()
+    {
+        return $this->hasMany(PhongTro::class, 'huyen_id', 'id');
     }
 
-    public function show($id){
-        return self::where('province_id','=',$id)->get();
+    public function show($id)
+    {
+        return self::where('province_id', '=', $id)->get();
     }
-public static function getHuyen(){
-    return self::all();
-} 
+    public static function getHuyen()
+    {
+        return self::all();
+    }
+    public static function getHuyenCuaThanhPhoHaNoi(){
+        return self::where('province_id', '=', '2')->get();
+    }
 }

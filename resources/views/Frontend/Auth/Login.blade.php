@@ -113,18 +113,8 @@
                 <div class="col-xs-12 col-sm-5 col-md-5">
                     <div class="right">
                         <p class="mgb-20">Đăng nhập bằng Facebook hoặc Google</p>
-                        <section id="socialLoginForm">
-                            <div id="socialLoginList">
-                                <p>
-                                <form action="" method="post"> <button type="submit"
-                                        class="btn btn-social btn-bg-google btn-block" title="Đăng nhập bằng Google"><i
-                                            class="fa fa-google"></i> Đăng nhập bằng Google</button>
-                                    <input name="__RequestVerificationToken" type="hidden"
-                                        value="CfDJ8PGJMKt0IShAuxdoB4DjH0Y5_LMhtWZmJc1bqvfATwXnsS7EPyW4dp7_KzDToBa1LzWn2deebbyomwPVyQJuL_EoemldL-KkAwNjwQc741q3ZRccO4I54P_uoJnH8RYFFIf6HOQVAf2zVpO1tR9fg_g" />
-                                </form>
-                                </p>
-                            </div>
-                        </section>
+                        <a href="{{ route('auth.google') }}" class="btn btn-danger">Đăng nhập với Google</a>
+
                         <div class="mgt-25">
                             <p>Bạn chưa có tài khoản? <a href="{{ route('register') }}">&#x110;&#x103;ng
                                     k&#xFD;</a></p>

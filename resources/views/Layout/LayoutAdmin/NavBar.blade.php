@@ -33,6 +33,12 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{route('admin.phong_tro.getPhongtrochothue')}}" class="nav-link" data-key="t-chat">
+                                Danh sách các phòng trọ cần đăng
+                            </a>
+                        </li>
+
                         <!-- end Dashboard Menu -->
                     </ul>
                 </div>

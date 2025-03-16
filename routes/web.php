@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DiaChiController;
 use App\Http\Controllers\Admin\PhongtroController;
+use App\Http\Controllers\User\GoogleAuthController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserController;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the "web" middleware group. Make something great!  
 |
 */
 
@@ -38,6 +39,8 @@ Route::get('/create_user', function () {
     ]);
 });
 
+Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/chi_tiet/{slug}', [HomeController::class, 'chi_tiet'])->name('chi_tiet');
@@ -59,9 +62,16 @@ Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('postRegister', [AuthController::class, 'postRegister'])->name('postRegister');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::prefix('user')->name('user.')->group(function () {
-        Route::get('thong_tin_ca_nhan', [UserController::class, 'thongTinCaNhan'])->name('thongTinCaNhan');
-    });
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+    Route::get('/thong_tin_ca_nhan', [UserController::class, 'thongTinCaNhan'])->name('thongTinCaNhan');
+    Route::put('/edit-user/{id}', [AuthController::class, 'editUser'])->name('edit');
+    Route::get('/dang-tin', [UserController::class, 'dangtin'])->name('dangtin');
+    Route::post('post-dang-tin', [UserController::class, 'Postdangtin'])->name('Postdangtin');
+    Route::get('/quan-li-dang-tin', [UserController::class, 'quanLyDangTin'])->name('QuanLyDangTin');
+    Route::post('/search-phong', [UserController::class, 'searchPhong'])->name('searchPhong');
+    Route::post('/chothue', [UserController::class, 'chothue'])->name('chothue');
+});
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -95,6 +105,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
             Route::put('/update/{id}', [PhongtroController::class, 'update'])->name('update');
             Route::delete('/destroy/{id}', [PhongtroController::class, 'destroy'])->name('destroy');
+            Route::get('/danhsachcacphong',[PhongtroController::class,'getPhongtrochothue'])->name('getPhongtrochothue');
 
         });
 

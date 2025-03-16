@@ -311,34 +311,34 @@ $(document).ready(function () {
         $("#property_type .btn-close").click();
     });
 
-    $("#list_city li").click(function (e) {
-        e.preventDefault();
+    // $("#list_city li").click(function (e) {
+    //     e.preventDefault();
 
-        $("#list_city li").removeClass("selected");
-        $(this).addClass("selected");
-        var data = $(this).text();
-        $(".value-localtion").html(data);
-        if (data != "Toàn quốc") {
-            $(".value-localtion").addClass("bold");
-            wardModal.show();
-        } else {
-            $(".value-localtion").removeClass("bold");
-            cityModal.hide();
-            window.location = '/' + $("#hdnCategoryUrl").val();
-        }
-        let value_location = $(".value-localtion").first().text();
-        $("#property_ward_label").text(value_location);
-        var url = $(this).attr("data-url");
-        var districtUrl = $("#hdnDistrictUrl").val();
+    //     $("#list_city li").removeClass("selected");
+    //     $(this).addClass("selected");
+    //     var data = $(this).text();
+    //     $(".value-localtion").html(data);
+    //     if (data != "Toàn quốc") {
+    //         $(".value-localtion").addClass("bold");
+    //         wardModal.show();
+    //     } else {
+    //         $(".value-localtion").removeClass("bold");
+    //         cityModal.hide();
+    //         window.location = '/' + $("#hdnCategoryUrl").val();
+    //     }
+    //     let value_location = $(".value-localtion").first().text();
+    //     $("#property_ward_label").text(value_location);
+    //     var url = $(this).attr("data-url");
+    //     var districtUrl = $("#hdnDistrictUrl").val();
 
-        $.getJSON("/Home/ListDistrict", { provinceId: $(this).attr("data-value") }, function (data) {
-            var html = "<li id='0' data-value='" + url + "' onclick='districtSelect(0)'>Tất cả</li>"
-            $.each(data, function (i, item) {
-                html += "<li class='" + (districtUrl == item.Url ? "selected" : "") + "' id='" + item.Id + "' data-value='" + item.Url + "' onclick='districtSelect(" + item.Id + ")'>" + item.Name + "</li>"
-            });
-            $("#list_district").html(html);
-        });
-    });
+    //     $.getJSON("/Home/ListDistrict", { provinceId: $(this).attr("data-value") }, function (data) {
+    //         var html = "<li id='0' data-value='" + url + "' onclick='districtSelect(0)'>Tất cả</li>"
+    //         $.each(data, function (i, item) {
+    //             html += "<li class='" + (districtUrl == item.Url ? "selected" : "") + "' id='" + item.Id + "' data-value='" + item.Url + "' onclick='districtSelect(" + item.Id + ")'>" + item.Name + "</li>"
+    //         });
+    //         $("#list_district").html(html);
+    //     });
+    // });
 
     /*$("#list_district li").click(function (e) {
     	e.preventDefault();
@@ -441,17 +441,17 @@ $(document).ready(function () {
     var areaMax = $(".area_max").val();
     $(".slider-range-area").slider("values", [areaMin, areaMax]);
 
-    if ($("#hdnDistrictUrl").val() != "") {
-        var url = $("#hdnProvinceUrl").val();
-        var districtUrl = $("#hdnDistrictUrl").val();
-        $.getJSON("/Home/ListDistrict", { provinceId: $("#hdnProvinceId").val() }, function (data) {
-            var html = "<li id='0' data-value='" + url + "' onclick='districtSelect(0)'>Tất cả</li>"
-            $.each(data, function (i, item) {
-                html += "<li class='" + (districtUrl == item.Url ? "selected" : "") +"' id='" + item.Id + "' data-value='" + item.Url + "' onclick='districtSelect(" + item.Id + ")'>" + item.Name + "</li>"
-            });
-            $("#list_district").html(html);
-        });
-    }
+    // if ($("#hdnDistrictUrl").val() != "") {
+    //     var url = $("#hdnProvinceUrl").val();
+    //     var districtUrl = $("#hdnDistrictUrl").val();
+    //     $.getJSON("/Home/ListDistrict", { provinceId: $("#hdnProvinceId").val() }, function (data) {
+    //         var html = "<li id='0' data-value='" + url + "' onclick='districtSelect(0)'>Tất cả</li>"
+    //         $.each(data, function (i, item) {
+    //             html += "<li class='" + (districtUrl == item.Url ? "selected" : "") +"' id='" + item.Id + "' data-value='" + item.Url + "' onclick='districtSelect(" + item.Id + ")'>" + item.Name + "</li>"
+    //         });
+    //         $("#list_district").html(html);
+    //     });
+    // }
 
     $('.filter-location').click(function () {
         if ($("#hdnDistrictUrl").val() != "") {

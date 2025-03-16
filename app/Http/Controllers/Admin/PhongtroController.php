@@ -10,6 +10,7 @@ use App\Models\Provinces;
 use App\Models\Wards;
 use App\Services\PhongtroServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PhongtroController extends Controller
 {
@@ -98,5 +99,12 @@ public function __construct(PhongtroServices $phongtroServices){
         } catch (\Exception $e) {
             return redirect()->route('admin.phong_tro.index')->with('error', 'Lỗi khi xóa phòng trọ');
         }
+    }
+
+
+    public function getPhongtrochothue(){
+        $nguoiDang=Auth::user()->id;
+        $Phongtro = PhongTro::query()->whereNot('nguoi_dang',$nguoiDang)->orderBy('id','desc')->paginate(10);
+        return view('Admin.PhongTro.getPhongTroDang', compact('Phongtro'));
     }
 }

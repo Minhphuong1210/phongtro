@@ -9,7 +9,7 @@ class PhongTro extends Model
 {
     use HasFactory;
     protected $table = 'phongtro';
-    protected $fillable = ['name', 'image', 'content', 'slug', 'dien_tich', 'gia_tien', 'is_show_home', 'is_active', 'viewre', 'xa_id', 'huyen_id', 'thanh_pho_id', 'link_ban_do', 'nguoi_su_dung', 'tien_coc', 'thoi_han_hop_dong', 'category_id', 'thoi_gian', 'nguoi_dang'];
+    protected $fillable = ['name', 'image', 'content', 'slug', 'dien_tich', 'gia_tien', 'is_show_home', 'is_active', 'viewre', 'xa_id', 'huyen_id', 'thanh_pho_id', 'link_ban_do', 'nguoi_su_dung', 'tien_coc', 'thoi_han_hop_dong', 'category_id', 'thoi_gian', 'nguoi_dang','dai_chi_cu_the'];
 
 
     public function wards()

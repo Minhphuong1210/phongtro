@@ -20,3 +20,4 @@
 
 <!-- App js -->
 <script src="{{asset('asset/velzon/assets/js/app.js')}}"></script>
+<script src="{{ asset('asset/velzon/assets/js/ckeditor.js') }}"></script>
