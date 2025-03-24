@@ -96,7 +96,7 @@
                                     </div>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="">Qu&#xEA;n m&#x1EAD;t
+                                    <a href="{{route('forgot_password')}}">Qu&#xEA;n m&#x1EAD;t
                                         kh&#x1EA9;u?</a>
                                 </div>
                             </div>

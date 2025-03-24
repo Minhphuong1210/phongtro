@@ -18,11 +18,11 @@ class UserController extends Controller
     public function dangtin()
     {
         $quanhuyen = Districts::getHuyenCuaThanhPhoHaNoi();
-        $category = Category::all();
+        $category = Category::query()->where('is_active', 1)->get();
         // dd($quanhuyen);
         return view('Frontend.User.DangTinMoi', compact('quanhuyen', 'category'));
     }
-    public function Postdangtin(PhongTroCreateRequest $request)
+    public function Postdangtin(Request $request)
     {
         // dd($request->all());
         $imagePaths = [];
@@ -85,19 +85,18 @@ class UserController extends Controller
     public function searchPhong(Request $request)
     {
 
-        // dd($request->all());
+        $id = Auth::user()->id;
         $query = PhongTro::query()->where('nguoi_dang', 1);
         if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->name . '%');
+            $name = trim(strtolower($request->name));
+            $query->whereRaw("name COLLATE utf8mb4_general_ci LIKE ?", ["%$name%"]);
         }
-
 
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->category_id);
         }
 
         $phongtro = $query->with('category')->get();
-
         return response()->json($phongtro);
 
     }

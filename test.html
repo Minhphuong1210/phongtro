@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+
+
+<!-- #d9d9d9 -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .option-btn.active {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Ảnh sản phẩm -->
+            <div class="col-md-6">
+                <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="product_main.jpg" class="d-block w-100" alt="Sản phẩm chính">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="product_2.jpg" class="d-block w-100" alt="Ảnh phụ">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="d-flex mt-2">
+                    <img src="product_main.jpg" class="img-thumbnail me-2" width="100">
+                    <img src="product_2.jpg" class="img-thumbnail me-2" width="100">
+                    <img src="product_3.jpg" class="img-thumbnail" width="100">
+                </div>
+            </div>
+            <!-- Thông tin sản phẩm -->
+            <div class="col-md-6">
+                <h2>PROTEIN BEST NUT + 900gr</h2>
+                <p class="text-warning">★★★★★ 3.0 (150 Ratings)</p>
+                <h3>950.000 VND</h3>
+                <div class="d-flex mb-3">
+                    <button class="btn btn-dark me-2">Mua lẻ</button>
+                    <button class="btn btn-dark">Mua combo <span class="text-danger">Tiết kiệm 37%</span></button>
+                </div>
+                <p><strong>Lựa chọn:</strong></p>
+                <div class="btn-group mb-3" role="group">
+                    <button class="btn btn-outline-dark option-btn active">900gr</button>
+                    <button class="btn btn-outline-dark option-btn">400gr</button>
+                    <button class="btn btn-outline-dark option-btn">200gr</button>
+                </div>
+                <div>
+                    <button class="btn btn-dark w-100 mb-2">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-dark w-100 d-flex align-items-center justify-content-between">
+                        Thắc mắc liên hệ ZALO
+                        <img src="zalo_logo.png" alt="Zalo" width="30">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

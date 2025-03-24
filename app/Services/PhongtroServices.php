@@ -54,6 +54,8 @@ class PhongtroServices
 
         $data = $this->preparePhongTroData($request, $phongTro->image, true);
        
+// dd($data);
+
         return $this->PhongtroRepositories->updatePhongtro($id, $data);
     }
 

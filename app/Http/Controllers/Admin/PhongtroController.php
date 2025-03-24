@@ -84,7 +84,7 @@ public function __construct(PhongtroServices $phongtroServices){
                 $this->phongtroServices->updatePhongtro($request, $id);
                 return redirect()->route('admin.phong_tro.index')->with('success', 'Thêm sản phẩm thành công!');
             } catch (\Exception $e) {
-                return redirect()->route('admin.phong_tro.index')->with('error', 'Lỗi khi thêm sản phẩm: ');
+                return redirect()->route('admin.phong_tro.index')->with('error', 'Lỗi khi sửa sản phẩm: ');
             }
     }
 

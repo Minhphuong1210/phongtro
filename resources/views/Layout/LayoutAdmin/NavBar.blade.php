@@ -6,13 +6,21 @@
                 <span data-key="t-menu">Menu</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#">
+                <a class="nav-link menu-link" href="{{route('admin.dashboard')}}">
                     <i class="ri-dashboard-2-line"></i>
                     <span data-key="t-dashboards">Dashboards</span>
                 </a>
 
             </li>
-            <!-- end Dashboard Menu -->
+
+            <li class="nav-item">
+                <a class="nav-link menu-link" href="{{route('admin.users.index')}}">
+                    <i class="ri-dashboard-2-line"></i>
+                    <span data-key="t-dashboards">Người dùng</span>
+                </a>
+
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarApps">

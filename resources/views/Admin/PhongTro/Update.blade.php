@@ -197,15 +197,20 @@
                                         </div>
                                     </div>
 
+                                
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="thanh_pho_id" class="form-label">Danh mục</label>
 
                                             <select class="form-select" name="category_id" id="category_id">
-                                                <option selected>Chọn danh mục</option>
+                                              
                                                 @foreach ($category as $categorys)
                                                     <option value="{{ $categorys->id }}" {{ $PhongTro->category_id == $categorys->id ? 'selected' : '' }} data-id="{{ $categorys->id }}">
                                                         {{ $categorys->name }}</option>
+
+
+
+
                                                 @endforeach
                                             </select>
                                             @error('category_id')

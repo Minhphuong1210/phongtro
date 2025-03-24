@@ -20,10 +20,15 @@ class HomeController extends Controller
         $chitietPhongtro = PhongTro::getWherePhongtro()->where('slug', $slug)->first();
         $huyen_id = $chitietPhongtro->huyen_id;
 
-$sanPhamCungHuyen=PhongTro::getWherePhongtro()->where('huyen_id', $huyen_id)->whereNot('slug',$slug)->get();
-// dd($sanPhamCungHuyen);
+        $viewre = $chitietPhongtro->viewre;
+        $viewre += 1;
+        $chitietPhongtro->viewre = $viewre;
+        $chitietPhongtro->update();
 
-        return view('Frontend.PhongTroDetail', compact('chitietPhongtro','sanPhamCungHuyen' ));
+        $sanPhamCungHuyen = PhongTro::getWherePhongtro()->where('huyen_id', $huyen_id)->whereNot('slug', $slug)->get();
+        // dd($sanPhamCungHuyen);
+
+        return view('Frontend.PhongTroDetail', compact('chitietPhongtro', 'sanPhamCungHuyen'));
     }
 
 
@@ -38,7 +43,7 @@ $sanPhamCungHuyen=PhongTro::getWherePhongtro()->where('huyen_id', $huyen_id)->wh
 
     public function search(Request $request)
     {
-        
+
         $query = PhongTro::query();
         if (!empty($request->input('fillter.loai_nha_dat'))) {
             $category = Category::where('slug', $request->input('fillter.loai_nha_dat'))->first();
@@ -75,17 +80,17 @@ $sanPhamCungHuyen=PhongTro::getWherePhongtro()->where('huyen_id', $huyen_id)->wh
             $gia = $request->query('gia');
             [$giaMin, $giaMax] = explode('-', $gia);
 
-            $query->whereBetween('gia_tien', [(int)$giaMin, (int)$giaMax]);
+            $query->whereBetween('gia_tien', [(int) $giaMin, (int) $giaMax]);
 
         }
         if ($request->query('dien_tich')) {
             $dien_tich = $request->query('dien_tich');
-    
+
             [$dien_tich_min, $dien_tich_max] = explode('-', $dien_tich);
             // dd($dien_tich_min);
-            $query->whereBetween('dien_tich', [(int)$dien_tich_min, (int)$dien_tich_max]);
+            $query->whereBetween('dien_tich', [(int) $dien_tich_min, (int) $dien_tich_max]);
         }
-        $phongtros=$query->paginate(6);
+        $phongtros = $query->paginate(6);
         // dd($phongtros);
         $countTotalPhontro = count($phongtros);
         return view('Frontend.Home', compact('phongtros', 'countTotalPhontro'));

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiaChiController;
 use App\Http\Controllers\Admin\PhongtroController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\GoogleAuthController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
@@ -62,6 +64,14 @@ Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('postRegister', [AuthController::class, 'postRegister'])->name('postRegister');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/forgot-password',[AuthController::class,'forgot_password'])->name('forgot_password');
+Route::post('/forgot_password_email',[AuthController::class,'forgot_password_email'])->name('forgot_password_email');
+Route::get('reset_password/{token}',[AuthController::class,'reset_password'])->name('account.reset_password');
+Route::post('reset_password/{token}',[AuthController::class,'check_reset_password']);
+
+
+
+
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/thong_tin_ca_nhan', [UserController::class, 'thongTinCaNhan'])->name('thongTinCaNhan');
     Route::put('/edit-user/{id}', [AuthController::class, 'editUser'])->name('edit');
@@ -73,49 +83,45 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-    Route::prefix('admin')->group(function () {
-        Route::get('/', function () {
-            return view('Admin.Dashboard');
-        });
-
-        Route::prefix('category')->name('admin.category.')->group(function () {
-            Route::get('/', [CategoryController::class, 'index'])->name('index');
-
-            Route::get('/create', [CategoryController::class, 'create'])->name('create');
-
-            Route::post('/add', [CategoryController::class, 'add'])->name('add');
-
-            Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
-
-            Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
-            Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy');
-
-        });
-
-        Route::prefix('phongtro')->name('admin.phong_tro.')->group(function () {
-            Route::get('/', [PhongtroController::class, 'index'])->name('index');
-
-            Route::get('/create', [PhongtroController::class, 'create'])->name('create');
-
-            Route::post('/store', [PhongtroController::class, 'store'])->name('store');
-
-            Route::get('/edit/{id}', [PhongtroController::class, 'edit'])->name('edit');
-
-            Route::put('/update/{id}', [PhongtroController::class, 'update'])->name('update');
-            Route::delete('/destroy/{id}', [PhongtroController::class, 'destroy'])->name('destroy');
-            Route::get('/danhsachcacphong',[PhongtroController::class,'getPhongtrochothue'])->name('getPhongtrochothue');
-
-        });
-
-        Route::prefix('DiaChi')->name('admin.DiaChi.')->group(function () {
-            Route::get('/xa', [DiaChiController::class, 'getXa'])->name('getXa');
-            Route::post('/showxa', [DiaChiController::class, 'xa'])->name('showxa');
-
-            Route::post('/huyen', [DiaChiController::class, 'huyen'])->name('huyen');
-            Route::post('/thanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
-            Route::get('/getthanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
-        });
+    Route::prefix('category')->name('category.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/add', [CategoryController::class, 'add'])->name('add');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy');
     });
+
+    Route::prefix('phongtro')->name('phong_tro.')->group(function () {
+        Route::get('/', [PhongtroController::class, 'index'])->name('index');
+        Route::get('/create', [PhongtroController::class, 'create'])->name('create');
+        Route::post('/store', [PhongtroController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [PhongtroController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [PhongtroController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [PhongtroController::class, 'destroy'])->name('destroy');
+        Route::get('/danhsachcacphong', [PhongtroController::class, 'getPhongtrochothue'])->name('getPhongtrochothue');
+    });
+
+    Route::prefix('DiaChi')->name('DiaChi.')->group(function () {
+        Route::get('/xa', [DiaChiController::class, 'getXa'])->name('getXa');
+        Route::post('/showxa', [DiaChiController::class, 'xa'])->name('showxa');
+        Route::post('/huyen', [DiaChiController::class, 'huyen'])->name('huyen');
+        Route::post('/thanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
+        Route::get('/getthanhpho', [DiaChiController::class, 'thanhpho'])->name('thanhpho');
+    });
+
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [UsersController::class, 'index'])->name('index');
+        Route::get('/create', [UsersController::class, 'create'])->name('create');
+        Route::post('/add', [UsersController::class, 'add'])->name('add');
+        Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [UsersController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [UsersController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::post('/danhSachphongTheoNgay',[DashboardController::class,'getPhongTroTheoNgay'])->name('getPhongTroTheoNgay');
 });
+

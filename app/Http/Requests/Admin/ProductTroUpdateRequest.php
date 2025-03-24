@@ -28,7 +28,7 @@ class ProductTroUpdateRequest extends FormRequest
             'content'            => 'nullable|string',
             'thanh_pho_id'       => 'required|integer|exists:Provinces,id',
             'huyen_id'           => 'required|integer|exists:Districts,id',
-            'xa_id'              => 'required|integer|exists:Wards,id',
+            'xa_id'              => 'integer|exists:Wards,id',
             'tien_coc'           => 'required|numeric|min:0',
             'thoi_han_hop_dong'  => 'required|integer|min:1',
             'is_active'          => 'nullable',
