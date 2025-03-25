@@ -15,18 +15,17 @@
                                     class="icon ic-location-white"
                                 ></div>
                                 <div class="text">
-                                    32-34 Điện Biên Phủ, P.Đakao,
-                                    Quận 1, TP.HCM
+                                    144 Đ. Xuân Thủy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Vietnam
                                 </div>
                             </li>
                             <li>
                                 <div class="icon ic-phone"></div>
-                                <div class="text">0938.346.879</div>
+                                <div class="text">0395 391 139</div>
                             </li>
                             <li>
                                 <div class="icon ic-mail"></div>
                                 <div class="text">
-                                    nhatroviet@gmail.com
+                                    20020347@vnu.edu.vn
                                 </div>
                             </li>
                         </ul>
@@ -101,11 +100,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer-copyright text-center">
-        Copyright © 2011 - 2024 Thuephongtro.com. Ghi rõ nguồn
-        "Thuephongtro.com" khi phát hành lại thông tin từ website
-        này.
     </div>
     <div class="footer-toolbar">
         <div class="footer-toolbar-inner">
@@ -184,7 +178,7 @@
         <div class="bottom-box">
             <i class="icon ic-headset"></i>
             Liên hệ & hỗ trợ
-            <a href="#" class="fw-bold text-danger">0938.346.879</a>
+            <a href="#" class="fw-bold text-danger">0395 391 139</a>
         </div>
     </div>
 </div>
