@@ -1,6 +1,6 @@
 @extends('Layout.LayoutFrontend.Master')
 @section('title')
-Trang chủ
+    Trang chủ
 @endsection
 @section('content')
     <div class="container">
@@ -19,25 +19,6 @@ Trang chủ
         <h1 class="page-h1 font-merriweather-bold">
             Cho Thuê Phòng Trọ, Giá Rẻ, Mới Nhất Trên Toàn Quốc
         </h1>
-        {{-- <div class="section-box boxshadow bg-white border-radius mb-3 padding-15">
-            <div class="box-title fw-bold">Khu vực nổi bật</div>
-            <ul class="sub-place list-unstyled mb-0">
-                <li>
-                    <a href="cho-thue-phong-tro-ho-chi-minh.html">H&#x1ED3; Ch&#xED; Minh</a>
-                </li>
-                <li>
-                    <a href="cho-thue-phong-tro-ha-noi.html">Ha&#x300; N&#xF4;&#x323;i</a>
-                </li>
-                <li>
-                    <a href="cho-thue-phong-tro-da-nang.html">&#x110;&#xE0; N&#x1EB5;ng</a>
-                </li>
-                <li>
-                    <a href="cho-thue-phong-tro-binh-duong.html">B&#xEC;nh D&#x1B0;&#x1A1;ng</a>
-                </li>
-            </ul>
-        </div> --}}
-        {{-- <div class="row d-flex"> --}}
-
         <div class="listpage-left mt-3 ">
             <div class="section-posts mb-5">
                 <div class="section-header d-flex align-items-center justify-content-between mb-2">
@@ -59,117 +40,71 @@ Trang chủ
                 </div>
                 <div class="post-listing">
                     @foreach ($phongtros as $phongtro)
-                       <div class="getphongtro">
-                        <article class="post-item vip2-item boxshadow bg-white">
-                            <a
-                                href="{{route('chi_tiet',$phongtro->slug)}}">
+                        <div class="getphongtro">
+                            <article class="post-item vip2-item boxshadow bg-white">
+                                <a href="{{ route('chi_tiet', $phongtro->slug) }}">
 
-                                <?php
-                                
-                                $image = json_decode($phongtro->image);
-                                $firstImage = $image[0];
-                                
-                                ?>
+                                    <?php
+                                    
+                                    $image = json_decode($phongtro->image);
+                                    $firstImage = $image[0];
+                                    
+                                    ?>
 
-                                <figure class="thumb">
-                                    <img src="{{ Storage::url($firstImage) }}"
-                                        alt="Khu trọ mới xây - an ninh - sạch sẽ - giờ giấc tự do - riêng chủ - khóa vân tay - giá chỉ từ 2,6tr"
-                                        loading="lazy" />
-                                </figure>
-                                <div class="post-aside">
-                                    <h3 class="title">
-                                        {{ $phongtro->name }}
-                                    </h3>
-                                    <div class="post-meta clearfix">
-                                        <span class="price">{{ $phongtro->gia_tien }}</span>
-                                        <div class="info-features">
-                                            <span class="feature-item">
-                                                <i class="icon ic-expand"></i>{{ $phongtro->dien_tich }} m&#xB2;
-                                            </span>
-                                            <span class="vip-star vip1sao"></span>
+                                    <figure class="thumb">
+                                        <img src="{{ Storage::url($firstImage) }}"
+                                            alt="Khu trọ mới xây - an ninh - sạch sẽ - giờ giấc tự do - riêng chủ - khóa vân tay - giá chỉ từ 2,6tr"
+                                            loading="lazy" />
+                                    </figure>
+                                    <div class="post-aside">
+                                        <h3 class="title">
+                                            {{ $phongtro->name }}
+                                        </h3>
+                                        <div class="post-meta clearfix">
+                                            <span class="price">{{ $phongtro->gia_tien }}</span>
+                                            <div class="info-features">
+                                                <span class="feature-item">
+                                                    <i class="icon ic-expand"></i>{{ $phongtro->dien_tich }} m&#xB2;
+                                                </span>
+                                                <span class="vip-star vip1sao"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="post-address">
-                                        <i class="icon ic-address"></i>
-                                        <span>
-                                            {{ $phongtro->districts->name }}, {{ $phongtro->districts->name }}
-                                        </span>
-                                    </div>
-                                    <div class="post-excerpt limit-text-2">
-                                        {!! Str::limit($phongtro->content, 50) !!}
-                                    </div>
-                                    <div class="post-action d-flex justify-content-between align-items-center">
-                                        <div class="time d-flex align-items-center">
-                                            <i class="icon ic-clock"></i>
-                                            <span>Hôm nay</span>
-                                        </div>
-                                        <div class="bookmark">
-                                            <span class="btn-save" id="170151" onclick="setFav(170151)">
-                                                <i class="icon ic-heart"></i>
+                                        <div class="post-address">
+                                            <i class="icon ic-address"></i>
+                                            <span>
+                                                {{ $phongtro->districts->name }}, {{ $phongtro->districts->name }}
                                             </span>
                                         </div>
+                                        <div class="post-excerpt limit-text-2">
+                                            {!! Str::limit($phongtro->content, 50) !!}
+                                        </div>
+                                        <div class="post-action d-flex justify-content-between align-items-center">
+                                            <div class="time d-flex align-items-center">
+                                                <i class="icon ic-clock"></i>
+                                                <span>Hôm nay</span>
+                                            </div>
+                                            {{-- <div class="bookmark" >
+                                                <span class="btn-save phong_yeu_thich" data-id="{{$phongtro->id}}">
+                                                    <i class="icon ic-heart"></i>
+                                                </span>
+                                            </div> --}}
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </article>
-                       </div>
+                                </a>
+                            </article>
+                        </div>
                     @endforeach
 
-<span id="du_lieu">
+                    <span id="du_lieu">
 
-</span>
+                    </span>
 
                 </div>
                 <div class="d-flex justify-content-center">
                     {{ $phongtros->links() }}
                 </div>
 
-                {{-- <section class="section" style="background: none; border: 0">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            Tìm kiếm theo từ khóa
-                        </h3>
-                    </div>
-                    <div class="section-content">
-                        <ul class="tags-list clearfix">
-                            <li class="tag-item">
-                                <a title="Ph&#xF2;ng tr&#x1ECD; d&#x1B0;&#x1EDB;i 1 tri&#x1EC7;u TPHCM"
-                                    href="tags/phong-tro-duoi-1-trieu-tphcm.html">Ph&#xF2;ng tr&#x1ECD;
-                                    d&#x1B0;&#x1EDB;i 1 tri&#x1EC7;u
-                                    TPHCM</a>
-                            </li>
-                            <li class="tag-item">
-                                <a title="Ph&#xF2;ng tr&#x1ECD; Th&#x1EE7; &#x110;&#x1EE9;c gi&#xE1; d&#x1B0;&#x1EDB;i 2 tri&#x1EC7;u"
-                                    href="tags/phong-tro-thu-duc-gia-duoi-2-trieu.html">Ph&#xF2;ng tr&#x1ECD;
-                                    Th&#x1EE7; &#x110;&#x1EE9;c
-                                    gi&#xE1; d&#x1B0;&#x1EDB;i 2
-                                    tri&#x1EC7;u</a>
-                            </li>
-                            <li class="tag-item">
-                                <a title="T&#xEC;m ph&#xF2;ng tr&#x1ECD; d&#x1B0;&#x1EDB;i 2 tri&#x1EC7;u T&#xE2;n Ph&#xFA; gi&#xE1; r&#x1EBB;"
-                                    href="tags/tim-phong-tro-duoi-2-trieu-tan-phu-gia-re.html">T&#xEC;m ph&#xF2;ng
-                                    tr&#x1ECD;
-                                    d&#x1B0;&#x1EDB;i 2 tri&#x1EC7;u
-                                    T&#xE2;n Ph&#xFA; gi&#xE1;
-                                    r&#x1EBB;</a>
-                            </li>
-                            <li class="tag-item">
-                                <a title="Ph&#xF2;ng tr&#x1ECD; g&#x1EA7;n &#x110;&#x1EA1;i h&#x1ECD;c B&#xE1;ch Khoa Th&#x1EE7; &#x110;&#x1EE9;c"
-                                    href="tags/phong-tro-gan-dai-hoc-bach-khoa.html">Ph&#xF2;ng tr&#x1ECD;
-                                    g&#x1EA7;n &#x110;&#x1EA1;i
-                                    h&#x1ECD;c B&#xE1;ch Khoa
-                                    Th&#x1EE7; &#x110;&#x1EE9;c</a>
-                            </li>
-                            <li class="tag-item">
-                                <a title="Ph&#xF2;ng tr&#x1ECD; g&#x1EA7;n tr&#x1B0;&#x1EDD;ng &#x110;&#x1EA1;i H&#x1ECD;c B&#xE1;ch Khoa, Q10 - TPHCM"
-                                    href="tags/phong-tro-gan-truong-dai-hoc-bach-khoa-q10-tphcm.html">Ph&#xF2;ng tr&#x1ECD;
-                                    g&#x1EA7;n tr&#x1B0;&#x1EDD;ng
-                                    &#x110;&#x1EA1;i H&#x1ECD;c
-                                    B&#xE1;ch Khoa, Q10 - TPHCM</a>
-                            </li>
-                        </ul>
-                    </div>
-                </section> --}}
+
             </div>
         </div>
         <div class="listpage-right mt-3 ">
@@ -224,7 +159,7 @@ Trang chủ
                                 Trên 20 triệu
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -255,11 +190,13 @@ Trang chủ
                                 80m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '80-100']) }}">Từ 80 -
+                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '80-100']) }}">Từ 80
+                                -
                                 100m<sup>2</sup></a>
                         </li>
                         <li>
-                            <a rel="nofollow" href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '100-1000']) }}">Trên
+                            <a rel="nofollow"
+                                href="{{ route('theo_gia_va_dien_tich', ['dien_tich' => '100-1000']) }}">Trên
                                 100m<sup>2</sup></a>
                         </li>
                     </ul>
@@ -405,4 +342,19 @@ Trang chủ
             }
         }
     </style>
+
+
+<script>
+    const phong_yeu_thich = document.querySelectorAll('.phong_yeu_thich');
+    // console.log(phong_yeu_thich);
+    phong_yeu_thich.forEach(item => {
+        item.addEventListener('click',function(){
+            const id = $(this).data('id');
+            // console.log(id);
+        })
+    });
+
+
+</script>
+
 @endsection

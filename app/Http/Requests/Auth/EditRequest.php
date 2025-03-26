@@ -22,6 +22,9 @@ class EditRequest extends FormRequest{
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'phone' => 'required|regex:/^0[0-9]{9}$/',
+            'current_password' => 'string',
+            'new_password' => 'string|min:8',
+            'confirm_password' => 'string|same:new_password',
 
         ];
     }
@@ -35,6 +38,7 @@ class EditRequest extends FormRequest{
             // 'email.unique' => 'Email đã tồn tại.',
             'phone.required' => 'Vui lòng nhập số điện thoại.',
             'phone.regex' => 'Số điện thoại không hợp lệ.',
+            'confirm_password.same' => 'Xác nhận mật khẩu không khớp.',
         ];
     }
 

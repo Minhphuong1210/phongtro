@@ -88,8 +88,8 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $query = PhongTro::query()->where('nguoi_dang', 1);
         if ($request->filled('name')) {
-            $name = trim(strtolower($request->name));
-            $query->whereRaw("name COLLATE utf8mb4_general_ci LIKE ?", ["%$name%"]);
+            $name = trim($request->name);
+        $query->where('name', 'like', "%{$name}%");
         }
 
         if ($request->filled('category_id')) {

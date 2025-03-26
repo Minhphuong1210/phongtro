@@ -50,9 +50,6 @@ class HomeController extends Controller
             $id_category = $category['id'];
             $query->where('category_id', $id_category);
         }
-        if (!empty($request->input('fillter.dia_chi.thanhPho'))) {
-            $query->where('thanh_pho_id', $request->input('fillter.dia_chi.thanhPho'));
-        }
         if (!empty($request->input('fillter.dia_chi.quan_huyen'))) {
             $query->where('huyen_id', $request->input('fillter.dia_chi.quan_huyen'));
         }
@@ -95,4 +92,10 @@ class HomeController extends Controller
         $countTotalPhontro = count($phongtros);
         return view('Frontend.Home', compact('phongtros', 'countTotalPhontro'));
     }
+
+
+public function getSanPhamYeuThich(String $id){
+
+}
+
 }

@@ -137,7 +137,7 @@
     </div>
     <a href="javascript:void(0);" class="backtop">
         <img
-            src="assets/images/ic-chevron-up-white.svg"
+            src="{{asset('frontend/assets/images/ic-chevron-up-white.svg')}}"
             alt="go top"
         />
     </a>

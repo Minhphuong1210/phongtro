@@ -43,6 +43,19 @@
                         <h2>Thông tin cá nhân</h2>
                     </div>
                     <div class="edit-form__fields">
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    
+
                         <form action="{{route('user.edit',Auth::user()->id)}}" class="form-horizontal" enctype="multipart/form-data"
                             method="post">
                     @method('PUT')
@@ -137,20 +150,16 @@
                                     <span class="input-group-text">#</span>
                                     <input type="text" value="TP.Hồ Chí Minh" class="form-control">
                                 </div>
-                                <a href="/doi-mat-khau.html">
+                                <a href="{{route('user.doiMatKhau')}}">
                                     Bấm vào đây để thay đổi mật khẩu
                                 </a>
                             </div>
                             <div class="form-group mb-5 w-100">
                                 <label for="">Ảnh đại diện</label>
                                 <div class="avatar">
-                                    <img id="srcImg" src="/assets/images/default-user.svg" alt="avatar"
+                                    <img id="srcImg" src="{{Storage::url(Auth::user()->image) ?? "" }}" alt="avatar"
                                         style="width:150px;height:150px">
-                                    <a href="javascript:;" id="change_avatar" class="btn btn-secondary">
-                                        Chọn ảnh khác
-                                    </a>
-                                    <input type="file" name="Avatar" id="Avatar" onchange="showImg(event)"
-                                        style="display:none">
+                                    <input type="file" name="avatar" id="Avatar" >
                                 </div>
                             </div>
 

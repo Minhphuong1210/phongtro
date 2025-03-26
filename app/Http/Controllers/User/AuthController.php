@@ -62,35 +62,50 @@ class AuthController extends Controller
     public function editUser(EditRequest $request, string $id)
     {
         $user = User::findOrFail($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-        ]);
 
-        if ($user) {
-            return redirect()->route('user.thongTinCaNhan')->with('success', 'Đổi mật khẩu thành công!');
+        // Xử lý ảnh đại diện
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/avatars', $fileName, 'public');
         } else {
-            return redirect()->route('user.thongTinCaNhan')->with('error', 'đổi mật khẩu không thành công!');
+            $filePath = $user->image; // Giữ nguyên ảnh cũ nếu không tải lên ảnh mới
         }
 
-        // dd($request->all());
+        // Cập nhật các thông tin cơ bản
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->image = $filePath;
 
+        // Xử lý cập nhật mật khẩu nếu có nhập mật khẩu mới
+        if ($request->filled('new_password')) {
+            if ($request->new_password !== $request->confirm_password) {
+                return redirect()->back()->with('error', 'Mật khẩu nhập lại k đúng.');
+            }
+
+            $user->password = Hash::make($request->new_password);
+        }
+
+        $user->save(); // Lưu lại thay đổi vào database
+
+        return redirect()->route('user.thongTinCaNhan')->with('success', 'Cập nhật thông tin thành công!');
     }
+
 
 
     public function forgot_password()
-    {   
+    {
         return view('Frontend.Auth.forgot-password');
     }
 
-     public function forgot_password_email(Request $request)
+    public function forgot_password_email(Request $request)
     {
 
         $user = User::where('email', $request->email)->first();
 
-//        dd($user);
+        //        dd($user);
 
         if (!$user) {
             return response()->json([
@@ -160,7 +175,7 @@ class AuthController extends Controller
         $data = [
             'password' => bcrypt($request->newPassword)
         ];
-//       dd($data);
+        //       dd($data);
         $check = $user->update($data);
         if ($check) {
             password_resets::where('token', $token)->delete();
@@ -172,5 +187,31 @@ class AuthController extends Controller
         }
     }
 
+
+    public function doiMatKhau()
+    {
+        return view('Frontend.User.doiMatKhau');
+    }
+
+    public function edit_password(Request $request, string $id)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6',
+            'confirm_password' => 'required|same:new_password',
+        ]);
+        $user = User::findOrFail($id);
+
+    
+    if (!Hash::check($request->current_password, $user->password)) {
+        return back()->with('error', 'Mật khẩu cũ không chính xác. Vui lòng thử lại.');
+    }
+
+  
+    $user->password = Hash::make($request->new_password);
+    $user->save();
+
+    return back()->with('success', 'Cập nhật mật khẩu thành công!');
+    }
 
 }

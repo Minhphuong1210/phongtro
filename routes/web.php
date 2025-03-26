@@ -37,7 +37,7 @@ Route::get('/create_user', function () {
     $user = User::create([
         'name' => 'User',
         'email' => 'User@gmail.com',
-        'password' => bcrypt('123456')
+        'password' => bcrypt('123456789Aa')
     ]);
 });
 
@@ -80,6 +80,10 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/quan-li-dang-tin', [UserController::class, 'quanLyDangTin'])->name('QuanLyDangTin');
     Route::post('/search-phong', [UserController::class, 'searchPhong'])->name('searchPhong');
     Route::post('/chothue', [UserController::class, 'chothue'])->name('chothue');
+    Route::get('/doi-mat-khau', [AuthController::class, 'doiMatKhau'])->name('doiMatKhau');
+    Route::put('/doi-mat-khau/{id}', [AuthController::class, 'edit_password'])->name('edit_password');
+
+
 });
 
 

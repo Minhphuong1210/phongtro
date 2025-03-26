@@ -59,6 +59,13 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <section id="loginForm">
+
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                         <form action="{{ route('postLogin') }}" method="post">
                             @csrf
                             <div class="form-group pb-3">
