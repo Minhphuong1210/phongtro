@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="logo"> <a href="index.html"> <img src="assets/images/logo.png" alt="logo"> </a> </div>
+    <div class="logo"> <a href="/"> <img src="{{ asset('frontend/logo.png') }}" alt="logo"    > </a> </div>
     <ul class="menu-nav list-unstyled d-none d-xl-flex align-items-center mb-0">
         <?php $categories = App\Models\Category::query()->where('is_active', 1)->get(); ?>
 

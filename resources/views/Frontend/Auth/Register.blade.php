@@ -135,13 +135,7 @@
                         <section id="socialLoginForm">
                             <div id="socialLoginList">
                                 <p>
-                                <form action="https://thuephongtro.com/Login/Google" method="post"> <button type="submit"
-                                        class="btn btn-social btn-bg-google btn-block" title="Đăng nhập bằng Google"><i
-                                            class="fa fa-google"></i> Đăng nhập bằng
-                                        Google</button>
-                                    <input name="__RequestVerificationToken" type="hidden"
-                                        value="CfDJ8PGJMKt0IShAuxdoB4DjH0Z1tv0S9s6ySsTOXTL5jjc1av__9_xCVcJFHAxiT5u6hAhdEiGR0pFYEd7zudEFwQy3MDeLnvm8q7eVVzyEwaVaWd-V_W2UW_rF9Qyfb5aDk9b7eCa7tmRNRNGJIeCat5I" />
-                                </form>
+                                <a href="{{ route('auth.google') }}" class="btn btn-danger">Đăng nhập với Google</a>
                                 </p>
                             </div>
                         </section>

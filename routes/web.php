@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!  
 |
 */
+// câu lệnh chay php artisan serve
 
 Route::get('/create_admin', function () {
 
@@ -48,6 +49,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/chi_tiet/{slug}', [HomeController::class, 'chi_tiet'])->name('chi_tiet');
 Route::get('tim_phong/{slug}', [HomeController::class, 'tim_phong'])->name(name: 'tim_phong');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/thongbao', [HomeController::class, 'thongBao'])->name(name: 'thongBao');
+Route::get('/cho-thue-co-mat-thue-khong', [HomeController::class, 'choThueTroCoMatThue'])->name(name: 'choThueTroCoMatThue');
+Route::get('/nhung-dieu-can-luu-y-khi-o-tro', [HomeController::class, 'nhungDieuCanLuuYKhiOTro'])->name(name: 'nhungDieuCanLuuYKhiOTro');
+Route::get('/quyen-loi-khi-o-tro', [HomeController::class, 'quyenLoiKhiThueTro'])->name(name: 'quyenLoiKhiThueTro');
+
 Route::prefix('DiaChi')->name('DiaChi.')->group(function () {
     Route::get('/xa', [DiaChiController::class, 'getXa'])->name('getXa');
     Route::post('/showxa', [DiaChiController::class, 'xa'])->name('showxa');

@@ -7,11 +7,11 @@
         <div id="breadcrumb">
             <ol class="clearfix" itemscope="" itemtype="http://schema.org/BreadcrumbList">
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a itemprop="item" href="index.html"><span itemprop="name">Trang chủ</span></a>
+                    <a itemprop="item" href="/"><span itemprop="name">Trang chủ</span></a>
                     <meta itemprop="position" content="1" />
                 </li>
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <a itemprop="item" href="cho-thue-phong-tro.html"><span itemprop="name">Cho thuê phòng trọ</span></a>
+                    <a itemprop="item" href="#"><span itemprop="name">Cho thuê phòng trọ</span></a>
                     <meta itemprop="position" content="2" />
                 </li>
             </ol>
@@ -47,8 +47,8 @@
                                     <?php
                                     
                                     $image = json_decode($phongtro->image);
-                                    $firstImage = $image[0];
-                                    
+                                    $firstImage = $image[0] ?? 'default.jpg';;
+                                   
                                     ?>
 
                                     <figure class="thumb">
@@ -91,6 +91,7 @@
                                         </div>
                                     </div>
                                 </a>
+                               
                             </article>
                         </div>
                     @endforeach
@@ -98,12 +99,12 @@
                     <span id="du_lieu">
 
                     </span>
-
+                    
                 </div>
                 <div class="d-flex justify-content-center">
                     {{ $phongtros->links() }}
                 </div>
-
+               
 
             </div>
         </div>
@@ -208,26 +209,25 @@
                 </div>
                 <div class="aside-box-content">
                     <div class="news-listing">
-                        <a href="kinh-nghiem/co-lay-lai-duoc-tien-coc-khi-da-dat-coc-thue-tro-nhung-chua-o-p28132.html"
+                        <a href="{{ route('thongBao') }}"
                             class="news-item">
                             <figure class="news-thumb">
-                                <img src="../img.thuephongtro.com/images/uploads/tien-dat-coc.jpg" />
+                                <img src="{{ asset('frontend\assets\images\lay-tien-coc.jpg') }}" />
                             </figure>
                             <aside class="news-aside ms-3">
-                                <span class="news-publish">05/12/2024</span>
                                 <h3 class="news-title">
                                     Có lấy lại được tiền cọc khi đã
                                     đặt cọc thuê trọ nhưng chưa ở?
                                 </h3>
                             </aside>
                         </a>
-                        <a href="kinh-nghiem/kinh-doanh-cho-thue-phong-tro-co-phai-dong-thue-gi-hay-khong-p28129.html"
+                        <a href="{{ route('choThueTroCoMatThue') }}  "
                             class="news-item">
                             <figure class="news-thumb">
-                                <img src="../img.thuephongtro.com/images/uploads/20200309134037-bskpl.jpg" />
+                                <img src="{{ asset('frontend\assets\images\kinh-daonh-phong-tro-co-thue-khong.jpg') }}" />
                             </figure>
                             <aside class="news-aside ms-3">
-                                <span class="news-publish">09/03/2020</span>
+
                                 <h3 class="news-title">
                                     {Chia sẻ} Kinh doanh cho thuê
                                     phòng trọ có phải đóng thuế gì
@@ -235,46 +235,31 @@
                                 </h3>
                             </aside>
                         </a>
-                        <a href="kinh-nghiem/nhung-dieu-can-luu-y-trong-viec-quan-ly-nha-tro-p28127.html"
+                        <a href="{{ route('nhungDieuCanLuuYKhiOTro') }}"
                             class="news-item">
                             <figure class="news-thumb">
-                                <img src="../img.thuephongtro.com/images/uploads/20200309133059-1nvvd.jpg" />
+                                <img src="{{ asset('frontend\assets\images\luu-y-khi-o-tro.jpg') }}" />
                             </figure>
                             <aside class="news-aside ms-3">
-                                <span class="news-publish">09/03/2020</span>
                                 <h3 class="news-title">
                                     Những điều cần lưu ý trong việc
                                     quản lý nhà trọ
                                 </h3>
                             </aside>
                         </a>
-                        <a href="kinh-nghiem/can-than-khi-di-tim-thue-phong-tro-nha-tro-voi-sinh-vien-moi-p28123.html"
+                        <a href="{{ route('quyenLoiKhiThueTro') }}"
                             class="news-item">
                             <figure class="news-thumb">
-                                <img src="../img.thuephongtro.com/images/uploads/20200309120917-p4ard.jpg" />
+                                <img src="{{ asset('frontend\assets\images\quyen-loi-khi-thue-nha.jpg') }}" />
                             </figure>
                             <aside class="news-aside ms-3">
-                                <span class="news-publish">09/03/2020</span>
                                 <h3 class="news-title">
                                     Cẩn thận khi đi tìm thuê phòng
                                     trọ, nhà trọ với sinh viên mới
                                 </h3>
                             </aside>
                         </a>
-                        <a href="kinh-nghiem/nhung-dieu-ban-nen-biet-de-bao-dam-quyen-loi-khi-di-thue-phong-tro-p28122.html"
-                            class="news-item">
-                            <figure class="news-thumb">
-                                <img src="../img.thuephongtro.com/images/uploads/20200309120431-utm0e.jpg" />
-                            </figure>
-                            <aside class="news-aside ms-3">
-                                <span class="news-publish">09/03/2020</span>
-                                <h3 class="news-title">
-                                    Những điều bạn nên biết để bảo
-                                    đảm quyền lợi khi đi thuê phòng
-                                    trọ
-                                </h3>
-                            </aside>
-                        </a>
+                        
                     </div>
                 </div>
             </div>
@@ -283,26 +268,7 @@
 
         {{-- </div> --}}
         <div class="clearfix"></div>
-        <section class="listpage-content boxshadow bg-white">
-            <div class="section-content mt-0 pt-4">
-                <p>
-                    Được th&agrave;nh lập năm 2011, Thuephongtro.com
-                    sau khi trải qua hơn 13 năm hoạt động đ&atilde;
-                    c&oacute; thể tự tin với danh hiệu
-                    &ldquo;K&ecirc;nh th&ocirc;ng tin ph&ograve;ng
-                    trọ số 1 Việt Nam&rdquo;. Thuephongtro.com
-                    chuy&ecirc;n đăng tải th&ocirc;ng tin về
-                    ph&ograve;ng trọ ở nhiều tỉnh th&agrave;nh lớn
-                    tr&ecirc;n cả nước (H&agrave; Nội, Hồ Ch&iacute;
-                    Minh, Đ&agrave; Nẵng). Trang web cung cấp cho
-                    chủ ph&ograve;ng trọ nền tảng kết nối với
-                    kh&aacute;ch h&agrave;ng v&agrave; cung cấp cho
-                    người c&oacute; nhu cầu những th&ocirc;ng tin
-                    cần thiết về ph&ograve;ng trọ với bộ lọc kết quả
-                    th&ocirc;ng minh, chi tiết tối đa.
-                </p>
-            </div>
-        </section>
+        
     </div>
     <style>
         .sub-place .active {

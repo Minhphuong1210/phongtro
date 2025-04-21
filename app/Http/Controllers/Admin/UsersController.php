@@ -60,15 +60,18 @@ $users = User::all();
 
     public function update(Request $request, string $id)
     {
+// dd($request->all());
 
-        $request->validate([
+$validator =  $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            // 'email' => 'required|email|unique:users,email,' . $id,
+            
             'phone' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
             'role' => 'required|in:admin,user'
         ]);
     
+
         $user = User::findOrFail($id);
         $user->update($request->only('name', 'email', 'phone', 'address'));
 

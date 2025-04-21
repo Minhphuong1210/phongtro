@@ -16,9 +16,12 @@ class HomeController extends Controller
     }
     public function chi_tiet(string $slug)
     {
-        // dd(123);
-        $chitietPhongtro = PhongTro::getWherePhongtro()->where('slug', $slug)->first();
+        // dd($slug);
+        $chitietPhongtro = PhongTro::query()->where('slug', $slug)->first();
         $huyen_id = $chitietPhongtro->huyen_id;
+
+// dd($chitietPhongtro);
+
 
         $viewre = $chitietPhongtro->viewre;
         $viewre += 1;
@@ -40,6 +43,8 @@ class HomeController extends Controller
         $countTotalPhontro = count($phongtros);
         return view('Frontend.Home', compact('phongtros', 'countTotalPhontro'));
     }
+
+// call api
 
     public function search(Request $request)
     {
@@ -93,9 +98,20 @@ class HomeController extends Controller
         return view('Frontend.Home', compact('phongtros', 'countTotalPhontro'));
     }
 
+public function thongBao(){
+    return view('Frontend.Danh-sach-bai-viet');
+}
 
-public function getSanPhamYeuThich(String $id){
+public function choThueTroCoMatThue(){
+    return view('Frontend.cho-thue-phong-co-mat-thue');
+}
 
+public function nhungDieuCanLuuYKhiOTro(){
+    return view('Frontend.nhung-dieu-can-luu-khi-o-tro');
+}
+
+public function quyenLoiKhiThueTro(){
+    return view('Frontend.quyen-loi-khi-thue-nha');
 }
 
 }

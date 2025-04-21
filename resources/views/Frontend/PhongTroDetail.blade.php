@@ -410,15 +410,15 @@
             <div id="overview" class="detailp-main boxshadow bg-white">
                 <header class="post-header">
                     <h1 class="page-h1 font-merriweather-bold mb-3" style="color: #ea2e9d">
-                        {{ $chitietPhongtro->name }}
+                        {{ $chitietPhongtro->name ?? ''}}
                     </h1>
                     <div class="post-features d-none d-xl-flex flex-wrap justify-content-between">
                         <p class="item post-address d-flex align-items-center my-3 w-100">
                             <i class="icon ic-address"></i>
                             <span>
                                 Địa chỉ:
-                                <span style="color: #777">{{ $chitietPhongtro->wards->name }},
-                                    {{ $chitietPhongtro->districts->name }}, {{ $chitietPhongtro->provinces->name }}
+                                <span style="color: #777">{{ $chitietPhongtro->wards->name ?? ''}},
+                                    {{ $chitietPhongtro->districts->name ?? '' }}, {{ $chitietPhongtro->provinces->name ?? ''}}
                                 </span>
                             </span>
                             <a href="#map" class="ms-3 d-flex align-items-center text-dark">
@@ -428,21 +428,21 @@
                         </p>
                         <div class="item-wrap">
                             <span class="item post-price d-inline-flex align-items-center me-4">
-                                <i class="icon ic-tag"></i> {{ number_format($chitietPhongtro->gia_tien) }}
+                                <i class="icon ic-tag"></i> {{ number_format($chitietPhongtro->gia_tien) ?? ''}}
                                 Tri&#x1EC7;u/th&#xE1;ng
                             </span>
                             <span class="item post-acreage d-inline-flex align-items-center me-4">
-                                <i class="icon ic-expand"></i> {{ $chitietPhongtro->dien_tich }}
+                                <i class="icon ic-expand"></i> {{ $chitietPhongtro->dien_tich ?? ''}}
                                 m&#xB2;
                             </span>
                             <span class="item post-hashtag d-inline-flex align-items-center">
                                 <i class="icon ic-hashtag"></i>
-                                {{ $chitietPhongtro->id }}
+                                {{ $chitietPhongtro->id ?? ''}}
                             </span>
                         </div>
                         <span class="item post-published d-inline-flex align-items-center">
                             <i class="icon ic-clock"></i>
-                            <span style="color: #777">{{ $chitietPhongtro->created_at }}</span>
+                            <span style="color: #777">{{ $chitietPhongtro->created_at ?? ''}}</span>
                         </span>
                     </div>
 
@@ -470,13 +470,13 @@
                         </div>
                     </div>
                     <h2 class="section-title">Thông tin mô tả</h2>
-                    <p>
+                    <!-- <p>
                         <b>Khu vực:</b>
                         <a href="cho-thue-phong-tro-vung-tau.html" style="color: #055699"
                             title="Cho thu&#xEA; ph&#xF2;ng tr&#x1ECD; V&#x169;ng T&#xE0;u">Cho thu&#xEA; ph&#xF2;ng
                             tr&#x1ECD;
                             V&#x169;ng T&#xE0;u</a>
-                    </p>
+                    </p> -->
                     <div>
                         {!! $chitietPhongtro->content ?? 'đang cập nhật nội dung....' !!}
                     </div>
@@ -486,8 +486,8 @@
                         Vị trí trên bản đồ
                     </h2>
                     <p class="d-flex align-items-center mt-0 mb-3">
-                        <i class="icon ic-address"></i>{{ $chitietPhongtro->wards->name }},
-                        {{ $chitietPhongtro->districts->name }}, {{ $chitietPhongtro->provinces->name }}
+                        <i class="icon ic-address"></i>{{ $chitietPhongtro->wards->name ?? ''}},
+                        {{ $chitietPhongtro->districts->name ?? ''}}, {{ $chitietPhongtro->provinces->name ?? ''}}
                     </p>
                     <div class="post-map-ifram-wrap d-xl-block d-none">
                         {{-- <iframe width="100%" height="100%" frameborder="0" style="border: 0"
@@ -632,12 +632,12 @@
                             </figure>
                             <aside class="post-aside" style="">
                                 <h4 class="title limit-text-2">
-                                    {{ $sanPhamCungHuyens->name }}
+                                    {{ $sanPhamCungHuyens->name ?? '' }}
                                 </h4>
-                                <span class="price">{{ $sanPhamCungHuyens->gia_tien }} Triệu/tháng</span>
+                                <span class="price">{{ $sanPhamCungHuyens->gia_tien ?? 0}} Triệu/tháng</span>
                                 <div class="info-features">
                                     <span class="feature-item">
-                                        <i class="icon ic-expand"></i>{{ $sanPhamCungHuyens->dien_tich }} m&#xB2;
+                                        <i class="icon ic-expand"></i>{{ $sanPhamCungHuyens->dien_tich ?? 0 }} m&#xB2;
                                     </span>
                                 </div>
                                 <div class="post-address limit-text-2"
@@ -648,9 +648,9 @@
             padding: 0;
         ">
                                     <span>
-                                        {{ $sanPhamCungHuyens->wards->name }},
-                                        {{ $sanPhamCungHuyens->districts->name }},
-                                        {{ $sanPhamCungHuyens->provinces->name }}
+                                        {{ $sanPhamCungHuyens->wards->name ?? 0}},
+                                        {{ $sanPhamCungHuyens->districts->name ?? 0 }},
+                                        {{ $sanPhamCungHuyens->provinces->name ?? 0 }}
                                     </span>
                                 </div>
                             </aside>

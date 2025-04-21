@@ -85,7 +85,7 @@
                                         <td>{{ Str::limit($item->content ?? '',50) }}</td>
                                         <td>{{ $item->slug ?? '' }}</td>
                                         <td>{{ $item->dien_tich ?? '' }}</td>
-                                        <td>{{ number_format($item->gia_tien ?? '') }}</td>
+                                        <td>{{ number_format($item->gia_tien ?? 0) }}</td>
                                         <td>{!! $item->is_show_home == '1'
                                             ? '<span class="badge bg-primary">Hiện</span>'
                                             : '<span class="badge bg-danger">Ẩn</span>' !!}</td>
@@ -100,7 +100,7 @@
                                         <td>{!! $item->nguoi_su_dung == '1'
                                             ? '<span class="badge bg-primary">Hiện</span>'
                                             : '<span class="badge bg-danger">Ẩn</span>' !!}</td>
-                                        <td>{{ number_format($item->tien_coc ?? '') }}</td>
+                                        <td>{{ number_format($item->tien_coc ?? 0) }}</td>
                                         <td>{{ $item->thoi_han_hop_dong ?? '' }}</td>
                                         <td>{{ $item->category->name ?? '' }}</td>
 

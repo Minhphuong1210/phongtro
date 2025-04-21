@@ -2,13 +2,16 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Mail\MailPhongTro;
 use App\Http\Requests\Admin\PhongTroCreateRequest;
 use App\Models\Category;
 use App\Models\Districts;
 use App\Models\PhongTro;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Mail;
 class UserController extends Controller
 {
     public function thongTinCaNHan()
@@ -58,7 +61,13 @@ class UserController extends Controller
             ''
         ];
         // dd($data);
+        $id = Auth::user()->id;
 
+        $user = User::find($id);
+
+
+
+        Mail::to($user->email)->send(new MailPhongTro($data,$user));
         $phongtro = PhongTro::create($data);
 
         if ($phongtro) {
@@ -81,7 +90,7 @@ class UserController extends Controller
 
         return view('Frontend.User.QuanLyDangTin', compact('phongtro', 'category'));
     }
-
+// use api
     public function searchPhong(Request $request)
     {
 
@@ -89,7 +98,7 @@ class UserController extends Controller
         $query = PhongTro::query()->where('nguoi_dang', 1);
         if ($request->filled('name')) {
             $name = trim($request->name);
-        $query->where('name', 'like', "%{$name}%");
+            $query->where('name', 'like', "%{$name}%");
         }
 
         if ($request->filled('category_id')) {
@@ -100,6 +109,8 @@ class UserController extends Controller
         return response()->json($phongtro);
 
     }
+
+// api
 
     public function chothue(Request $request)
     {
