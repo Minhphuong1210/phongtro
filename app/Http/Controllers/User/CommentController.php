@@ -32,4 +32,17 @@ class CommentController extends Controller
             'id' => $comment->id,
         ]);
     }
+
+    public function destroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+        if ($comment->user_id != auth()->id()) {
+            return response()->json(['message' => 'Bạn không có quyền xóa bình luận này.'], 403);
+        }
+
+        $comment->delete();
+
+        return response()->json(['message' => 'Bình luận đã được xóa thành công!']);
+    }
+
 }

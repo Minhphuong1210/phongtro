@@ -20,6 +20,13 @@
             <button class="btn btn-sm btn-secondary">Gửi trả lời</button>
         </form>
 
+        @if($comment->user_id == auth()->id())
+        <form action="" method="POST" class="delete-comment-form" data-id="{{ $comment->id }}" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+        </form>
+            @endif
 
         @foreach($comment->replies as $reply)
             @include('Frontend.comment', ['comment' => $reply])

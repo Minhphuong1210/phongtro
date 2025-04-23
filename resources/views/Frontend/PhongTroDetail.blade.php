@@ -666,8 +666,6 @@
                 method: "POST",
                 data: formData,
                 success: function(response) {
-console.log(response);
-
                     let newComment = `
                         <div class="card mt-3 ms-0" id="comment-${response.id}">
                             <div class="card-body">
@@ -702,6 +700,7 @@ console.log(response);
                 method: "POST",
                 data: formData,
                 success: function(response) {
+                    toastr.success('Thêm thành công!');
                     let reply = `
                         <div class="card mt-3 ms-5" id="comment-${response.id}">
                             <div class="card-body">
@@ -731,6 +730,28 @@ console.log(response);
     function toggleReplyForm(commentId) {
         $(`#reply-form-${commentId}`).toggleClass('d-none');
     }
+
+    $(document).on('submit', '.delete-comment-form', function(e) {
+    e.preventDefault();
+
+    var form = $(this);
+    var commentId = form.data('id');
+    
+    $.ajax({
+        url: '/user/delete/comments/' +commentId,
+        method: 'POST',
+        data: form.serialize(),
+        success: function(response) {
+           
+            $('#comment-' + commentId).remove();
+            toastr.success('Xóa thành công!');
+        },
+        error: function(response) {
+            alert('Có lỗi xảy ra!');
+        }
+    });
+});
+
 </script>
 
 @endsection

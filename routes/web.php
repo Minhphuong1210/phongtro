@@ -93,7 +93,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 
    
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-    
+    Route::delete('/delete/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 });
 Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
