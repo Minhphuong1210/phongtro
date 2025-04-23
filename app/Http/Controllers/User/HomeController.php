@@ -3,6 +3,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\PhongTro;
 use Illuminate\Http\Request;
 
@@ -14,24 +15,23 @@ class HomeController extends Controller
         $countTotalPhontro = count($phongtros);
         return view('Frontend.Home', compact('phongtros', 'countTotalPhontro'));
     }
+
+
+
+
     public function chi_tiet(string $slug)
     {
-        // dd($slug);
+  
+        $comments = Comment::with(['user', 'replies.user'])->whereNull('parent_id')->latest()->get();
         $chitietPhongtro = PhongTro::query()->where('slug', $slug)->first();
         $huyen_id = $chitietPhongtro->huyen_id;
-
-// dd($chitietPhongtro);
-
-
         $viewre = $chitietPhongtro->viewre;
         $viewre += 1;
         $chitietPhongtro->viewre = $viewre;
         $chitietPhongtro->update();
-
         $sanPhamCungHuyen = PhongTro::getWherePhongtro()->where('huyen_id', $huyen_id)->whereNot('slug', $slug)->get();
-        // dd($sanPhamCungHuyen);
-
-        return view('Frontend.PhongTroDetail', compact('chitietPhongtro', 'sanPhamCungHuyen'));
+    
+        return view('Frontend.PhongTroDetail', compact('chitietPhongtro', 'sanPhamCungHuyen','comments'));
     }
 
 

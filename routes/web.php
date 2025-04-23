@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiaChiController;
 use App\Http\Controllers\Admin\PhongtroController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Api\ChatbotController;
+use App\Http\Controllers\User\CommentController;
 use App\Http\Controllers\User\GoogleAuthController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
@@ -89,8 +91,13 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/doi-mat-khau', [AuthController::class, 'doiMatKhau'])->name('doiMatKhau');
     Route::put('/doi-mat-khau/{id}', [AuthController::class, 'edit_password'])->name('edit_password');
 
+   
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+    
 
 });
+Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::post('/chatbot', [ChatbotController::class, 'handle']);
 
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -133,5 +140,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     });
 
     Route::post('/danhSachphongTheoNgay',[DashboardController::class,'getPhongTroTheoNgay'])->name('getPhongTroTheoNgay');
+
 });
 

@@ -567,47 +567,7 @@
                 </div>
             </div>
             <div class="section-report"></div>
-            {{-- <section class="detailp-location boxshadow bg-white">
-                <div class="section-header">
-                    <h2 class="section-title font-merriweather-bold">
-                        Cho thuê phòng trọ Bà Rịa Vũng Tàu
-                    </h2>
-                </div>
-                <ul class="list-links clearfix list-unstyled mb-0">
-                    <li>
-                        <a title="Cho thuê phòng trọ Châu Đức" href="cho-thue-phong-tro-chau-duc.html" style="">Cho
-                            thuê phòng trọ Châu Đức</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Côn Đảo" href="cho-thue-phong-tro-con-dao.html" style="">Cho
-                            thuê phòng trọ Côn Đảo</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Đất Đỏ" href="cho-thue-phong-tro-dat-do.html" style="">Cho
-                            thuê phòng trọ Đất Đỏ</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Long Điền" href="cho-thue-phong-tro-long-dien.html" style="">Cho
-                            thuê phòng trọ Long Điền</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Phú Mỹ" href="cho-thue-phong-tro-phu-my-vt.html" style="">Cho
-                            thuê phòng trọ Phú Mỹ</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Xuyên Mộc" href="cho-thue-phong-tro-xuyen-moc.html" style="">Cho
-                            thuê phòng trọ Xuyên Mộc</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Vũng Tàu" href="cho-thue-phong-tro-vung-tau.html"
-                            style="color: #e4002b">Cho thuê phòng trọ Vũng Tàu</a>
-                    </li>
-                    <li>
-                        <a title="Cho thuê phòng trọ Bà Rịa" href="cho-thue-phong-tro-ba-ria.html" style="">Cho
-                            thuê phòng trọ Bà Rịa</a>
-                    </li>
-                </ul>
-            </section> --}}
+            
         </div>
         <div class="clearfix"></div>
     </div>
@@ -661,5 +621,116 @@
 
             </div>
         </section>
+
+        <div class="container mt-5">
+            <h4>Viết bình luận</h4>
+            <form id="comment-form">
+                @csrf
+                <div class="mb-3">
+                    <textarea name="content" class="form-control" rows="3" placeholder="Viết bình luận..." required></textarea>
+                    <input type="hidden" name="parent_id" value="">
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        
+            <hr>
+        
+            <h5 class="mt-4">Bình luận</h5>
+            <div id="comments-list">
+                @foreach($comments as $comment)
+                    @include('Frontend.comment', ['comment' => $comment])
+                @endforeach
+            </div>
+        </div>
+
+
     </div>
+<!-- Toastr CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+       
+        $('#comment-form').on('submit', function(event) {
+            event.preventDefault();
+
+
+
+            let formData = $(this).serialize();
+            $.ajax({
+                url: "/user/comments",
+                method: "POST",
+                data: formData,
+                success: function(response) {
+console.log(response);
+
+                    let newComment = `
+                        <div class="card mt-3 ms-0" id="comment-${response.id}">
+                            <div class="card-body">
+                                <strong>${response.user}</strong>
+                                <p>${response.comment}</p>
+                                <small class="text-muted">${response.created_at}</small>
+                                <button class="btn btn-sm btn-link text-primary p-0" onclick="toggleReplyForm(${response.id})">Trả lời</button>
+                                <form action="/user/comments" method="POST" class="d-none mt-2" id="reply-form-${response.id}">
+                                    @csrf
+                                    <div class="mb-2">
+                                        <textarea name="content" class="form-control" rows="2" placeholder="Trả lời..." required></textarea>
+                                        <input type="hidden" name="parent_id" value="${response.id}">
+                                    </div>
+                                    <button class="btn btn-sm btn-secondary">Gửi trả lời</button>
+                                </form>
+                            </div>
+                        </div>
+                    `;
+                    $('#comments-list').prepend(newComment);
+                    $('#comment-form textarea').val('');
+                }
+            });
+        });
+
+      
+        $(document).on('submit', '[id^="reply-form-"]', function(event) {
+            event.preventDefault();
+
+            let formData = $(this).serialize();
+            $.ajax({
+                url: "/user/comments",
+                method: "POST",
+                data: formData,
+                success: function(response) {
+                    let reply = `
+                        <div class="card mt-3 ms-5" id="comment-${response.id}">
+                            <div class="card-body">
+                                <strong>${response.user}</strong>
+                                <p>${response.content}</p>
+                                <small class="text-muted">${response.created_at}</small>
+                            </div>
+                        </div>
+                    `;
+                    $(`#comment-${response.parent_id}`).append(reply);
+                    $(`#reply-form-${response.parent_id} textarea`).val('');
+                    $(`#reply-form-${response.parent_id}`).addClass('d-none');
+                },
+                error: function(xhr, status, error) {
+                    if (xhr.status == 401) {
+                        toastr.error('Bạn cần đăng nhập để gửi bình luận!', 'Lỗi');
+                    } else {
+                    
+                        toastr.error('Có lỗi xảy ra khi gửi bình luận!', 'Lỗi');
+                    }
+                    toastr.error('Lỗi khi gửi bình luận:', error);
+                }
+            });
+        });
+    });
+
+    function toggleReplyForm(commentId) {
+        $(`#reply-form-${commentId}`).toggleClass('d-none');
+    }
+</script>
+
 @endsection
